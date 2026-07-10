@@ -25,7 +25,7 @@ chapter: false
 
 &emsp; **Thời gian thực tập:** Từ ngày 20/04/2026 đến ngày 10/07/2026
 
-<img src="/images/avatar-le-minh-tien.jpg" alt="Ảnh đại diện Le Minh Tien" style="max-width: 260px; width: 100%; height: auto; border-radius: 8px;" />
+{{< profile-image src="images/avatar-le-minh-tien.jpg" alt="Ảnh đại diện Le Minh Tien" >}}
 
 
 

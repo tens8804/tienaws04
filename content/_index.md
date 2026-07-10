@@ -27,7 +27,7 @@ chapter: false
 
 &emsp; **Internship Duration:** From 20/04/2026 to 10/07/2026
 
-<img src="/images/avatar-le-minh-tien.jpg" alt="Le Minh Tien profile picture" style="max-width: 260px; width: 100%; height: auto; border-radius: 8px;" />
+{{< profile-image src="images/avatar-le-minh-tien.jpg" alt="Le Minh Tien profile picture" >}}
 
 ### Report Content
 
