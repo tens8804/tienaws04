@@ -1,126 +1,102 @@
 ---
-title: "Event 1"
+title: "AWS & Swinburne Vietnam Cloud Computing Study Tour"
 date: 2024-01-01
 weight: 1
 chapter: false
 pre: " <b> 4.1. </b> "
 ---
 
-{{% notice warning %}}
-⚠️ **Note:** The information below is for reference purposes only. Please **do not copy it verbatim** into your report, including this warning.
-{{% /notice %}}
+# Summary Report: "AWS & Swinburne Vietnam Cloud Computing Study Tour and Industry Insights" (Online)
 
-# Summary Report: “GenAI-powered App-DB Modernization workshop”
+### Event Information
+
+&emsp;**Event Name:** AWS & Swinburne Vietnam Cloud Computing Study Tour and Industry Insights
+
+&emsp;**Format:** Knowledge-sharing session between Swinburne Vietnam students, industry experts, and AWS representatives; online livestream
+
+&emsp;**Date:** July 4, 2026
+
+&emsp;**Role:** Online attendee (YouTube livestream)
+
+&emsp;**Audience:** Swinburne Vietnam students, IT professionals, and cloud practitioners
 
 ### Event Objectives
 
-- Share best practices in modern application design
-- Introduce Domain-Driven Design (DDD) and event-driven architecture
-- Provide guidance on selecting the right compute services
-- Present AI tools to support the development lifecycle
+- Share information about the cloud job market, development trends, and AWS investments in Vietnam.
+- Bridge the gap between academic learning and real-world data engineering.
+- Help students and early-career professionals build the mindset, soft skills, and career strategy needed in IT.
+- Emphasize the role of community, lifelong learning, and visibility in career development.
 
 ### Speakers
 
-- **Jignesh Shah** – Director, Open Source Databases
-- **Erica Liu** – Sr. GTM Specialist, AppMod
-- **Fabrianne Effendi** – Assc. Specialist SA, Serverless Amazon Web Services
+- **Quynh Mai and Nguyen Tran Minh Duy** (Industry Lead Officer) - Introduction to the AWS-Swinburne partnership and the purpose of the study tour.
+- **Nguyen Gia Hung** (Head of Solution Architect, AWS Vietnam) - Cloud job market, challenges, trends, and AWS investments in Vietnam.
+- **Banh Cam Vinh** (Data Engineer, Renova Cloud) - Differences between academic learning and practical data engineering.
+- **Nhu Tran** (AWS Account Manager) - Overcoming fear, improving communication skills, and capturing career opportunities.
+- **Khang Nguyen** (Solution Architect, Cloud Kinetics & Swinburne alumnus) - AI integration, practical career advice, mindset development, and persistence.
 
 ### Key Highlights
 
-#### Identifying the drawbacks of legacy application architecture
+#### Nguyen Gia Hung - Cloud job market and AWS investment in Vietnam
 
-- Long product release cycles → Lost revenue/missed opportunities  
-- Inefficient operations → Reduced productivity, higher costs  
-- Non-compliance with security regulations → Security breaches, loss of reputation  
+The cloud market in Vietnam, especially AWS, has grown significantly in recent years, while traditional data centers have declined. The Cloud First strategy is becoming dominant among large enterprises.
 
-#### Transitioning to modern application architecture – Microservices
+AWS is investing strongly in local talent development and infrastructure such as CDN nodes and low-latency Local Zones. Building an AWS Region in Vietnam would require very large investment and a long payback period, showing AWS's long-term commitment to the Vietnamese market.
 
-Migrating to a modular system — each function is an **independent service** communicating via **events**, built on three core pillars:
+Talent hubs have been established in major cities such as Ho Chi Minh City, Hanoi, and Da Nang, with many international companies operating IT centers in Vietnam. Internship and junior roles now require skills such as Kubernetes, cloud-native architecture, and foundational cloud knowledge.
 
-- **Queue Management**: Handle asynchronous tasks  
-- **Caching Strategy**: Optimize performance  
-- **Message Handling**: Flexible inter-service communication  
+Career growth was described through three pillars: skills, visibility, and consistency. Many jobs are not publicly posted and are filled through internal referrals or community networks, so networking and community participation are very important.
 
-#### Domain-Driven Design (DDD)
+#### Banh Cam Vinh - Academic learning vs real-world data engineering
 
-- **Four-step method**: Identify domain events → arrange timeline → identify actors → define bounded contexts  
-- **Bookstore case study**: Demonstrates real-world DDD application  
-- **Context mapping**: 7 patterns for integrating bounded contexts  
+Academic projects usually use clean data, small scale, and flexible timelines, while real-world work requires handling messy data, constantly changing requirements, and direct business impact.
 
-#### Event-Driven Architecture
+Skills such as data quality assurance, error handling, security, and cross-functional collaboration are very important in real projects but are not always emphasized in university programs. Technical fundamentals such as databases, programming, algorithms, distributed systems, and APIs remain essential for both interviews and daily work.
 
-- **3 integration patterns**: Publish/Subscribe, Point-to-point, Streaming  
-- **Benefits**: Loose coupling, scalability, resilience  
-- **Sync vs async comparison**: Understanding the trade-offs  
+#### Nhu Tran - Overcoming fear and soft skills
 
-#### Compute Evolution
+Recognizing and overcoming fear of failure, public speaking, and miscommunication is essential for career development. Proactive communication with managers and colleagues helps improve working relationships and increases visibility in the organization.
 
-- **Shared Responsibility Model**: EC2 → ECS → Fargate → Lambda  
-- **Serverless benefits**: No server management, auto-scaling, pay-for-value  
-- **Functions vs Containers**: Criteria for appropriate choice  
+The speaker also emphasized self-awareness, emotional intelligence, and resilience as core factors for long-term career success.
 
-#### Amazon Q Developer
+#### Khang Nguyen - AI, career mindset, and persistence
 
-- **SDLC automation**: From planning to maintenance  
-- **Code transformation**: Java upgrade, .NET modernization  
-- **AWS Transform agents**: VMware, Mainframe, .NET migration  
+University education provides a strong foundation, but it is not enough to be fully industry-ready. AI tools such as coding assistants and diagram generators have become important parts of modern workflows, but they still require critical thinking and verification skills.
+
+The hiring priority shared in the session was attitude, skills, experience, and personal traits. Key success factors include asking deep questions, maintaining a growth mindset, collaborating across disciplines, and sustaining long-term effort.
 
 ### Key Takeaways
 
-#### Design Mindset
+- The cloud market in Vietnam is growing strongly, creating high demand for cloud professionals with practical skills.
+- Academic learning and real-world work are fundamentally different: real projects involve messy data, changing requirements, business risks, and cross-functional dependencies.
+- Networking and community participation are not optional, because many career opportunities are filled through referrals and community connections.
+- AI is a tool, not a replacement for thinking. Using AI effectively must go together with strong fundamentals and critical judgment.
+- Career success requires skills, visibility, and consistency. Technical skills alone are not enough without presence and sustained effort over time.
+- Soft skills such as communication, self-awareness, and resilience are as important as technical skills.
 
-- **Business-first approach**: Always start from the business domain, not the technology  
-- **Ubiquitous language**: Importance of a shared vocabulary between business and tech teams  
-- **Bounded contexts**: Identifying and managing complexity in large systems  
+### Application to Work
 
-#### Technical Architecture
+Nguyen Gia Hung is my internship mentor at AWS Vietnam, so hearing his broader perspective on the cloud market and career development strategy added meaningful depth to what I am experiencing directly in the FCAJ program.
 
-- **Event storming technique**: Practical method for modeling business processes  
-- Use **event-driven communication** instead of synchronous calls  
-- **Integration patterns**: When to use sync, async, pub/sub, streaming  
-- **Compute spectrum**: Criteria for choosing between VM, containers, and serverless  
+The First Cloud AI Journey community mentioned throughout the session is the same program I am participating in, making the career development framework of "Skills x Visibility x Consistency" immediately applicable to my current situation.
 
-#### Modernization Strategy
+The gap between academic projects and real engineering described by Banh Cam Vinh closely reflects what I experienced in the EAM Workspace project, especially the importance of consistent seed data, handling migration conflicts, and collaborating across branches.
 
-- **Phased approach**: No rushing — follow a clear roadmap  
-- **7Rs framework**: Multiple modernization paths depending on the application  
-- **ROI measurement**: Cost reduction + business agility  
-
-### Applying to Work
-
-- **Apply DDD** to current projects: Event storming sessions with business teams  
-- **Refactor microservices**: Use bounded contexts to define service boundaries  
-- **Implement event-driven patterns**: Replace some sync calls with async messaging  
-- **Adopt serverless**: Pilot AWS Lambda for suitable use cases  
-- **Try Amazon Q Developer**: Integrate into the dev workflow to boost productivity  
+Nhu Tran's advice about overcoming communication fear directly relates to preparing for my final internship presentation. Khang Nguyen's hiring priority framework is also useful for self-assessment as I prepare to apply for full-time roles after graduation.
 
 ### Event Experience
 
-Attending the **“GenAI-powered App-DB Modernization”** workshop was extremely valuable, giving me a comprehensive view of modernizing applications and databases using advanced methods and tools. Key experiences included:
+This session was especially meaningful because Nguyen Gia Hung, my internship mentor, was one of the main speakers. Hearing his industry-level perspective on the cloud market, AWS's long-term commitment in Vietnam, and career development strategy made the content more authentic and personally relevant.
 
-#### Learning from highly skilled speakers
-- Experts from AWS and major tech organizations shared **best practices** in modern application design.  
-- Through real-world case studies, I gained a deeper understanding of applying **DDD** and **Event-Driven Architecture** to large projects.  
+Some reflections from the event:
 
-#### Hands-on technical exposure
-- Participating in **event storming** sessions helped me visualize how to **model business processes** into domain events.  
-- Learned how to **split microservices** and define **bounded contexts** to manage large-system complexity.  
-- Understood trade-offs between **synchronous and asynchronous communication** and integration patterns like **pub/sub, point-to-point, streaming**.  
+- The point that many jobs are filled through networks rather than public job boards changed how I view communities such as FCAJ and AWS Study Group.
+- Banh Cam Vinh's data engineering section confirmed what I felt in the EAM Workspace project: the gap between "working in theory" and "working in production with real data and business constraints" is very large.
+- Nhu Tran's section on overcoming fear helped me reframe hesitation in group communication as an area I need to improve.
+- Khang Nguyen's journey from Swinburne student to Solution Architect at a cloud company shows a concrete and practical path for students pursuing cloud careers.
 
-#### Leveraging modern tools
-- Explored **Amazon Q Developer**, an AI tool for SDLC support from planning to maintenance.  
-- Learned to **automate code transformation** and pilot serverless with **AWS Lambda** to improve productivity.  
+### Screenshots from the Event
 
-#### Networking and discussions
-- The workshop offered opportunities to exchange ideas with experts, peers, and business teams, enhancing the **ubiquitous language** between business and tech.  
-- Real-world examples reinforced the importance of the **business-first approach** rather than focusing solely on technology.  
+![AWS & Swinburne Vietnam Cloud Computing Study Tour livestream screenshot](/images/4-EventParticipated/event1-cloud-study-tour.png)
 
-#### Lessons learned
-- Applying DDD and event-driven patterns reduces **coupling** while improving **scalability** and **resilience**.  
-- Modernization requires a **phased approach** with **ROI measurement**; rushing the process can be risky.  
-- AI tools like Amazon Q Developer can significantly **boost productivity** when integrated into the current workflow.  
-
-#### Some event photos
-*Add your event photos here*  
-
-> Overall, the event not only provided technical knowledge but also helped me reshape my thinking about application design, system modernization, and cross-team collaboration.
+Overall, this event provided a comprehensive, honest, and practical perspective on what it takes to build a cloud career in Vietnam, combining market data, engineering reality, soft-skill development, and career strategy.

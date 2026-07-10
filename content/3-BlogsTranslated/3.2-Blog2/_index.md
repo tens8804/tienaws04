@@ -1,126 +1,47 @@
 ---
-title: "Blog 2"
+title: "AWS Verified Access and AWS Network Firewall"
 date: 2024-01-01
-weight: 1
+weight: 2
 chapter: false
 pre: " <b> 3.2. </b> "
 ---
-{{% notice warning %}}
-⚠️ **Note:** The information below is for reference purposes only. Please **do not copy verbatim** for your report, including this warning.
-{{% /notice %}}
 
-# Getting Started with Healthcare Data Lakes: Using Microservices
+# [AWS Verified Access and AWS Network Firewall] Building a Zero Trust Model to Replace Traditional VPN
 
-Data lakes can help hospitals and healthcare facilities turn data into business insights, maintain business continuity, and protect patient privacy. A **data lake** is a centralized, managed, and secure repository to store all your data, both in its raw and processed forms for analysis. Data lakes allow you to break down data silos and combine different types of analytics to gain insights and make better business decisions.
+When people think about remote access to internal systems, VPN is usually the first solution that comes to mind. However, as cyberattacks become more sophisticated and hybrid work becomes more common, VPNs reveal many limitations in access control.
 
-This blog post is part of a larger series on getting started with setting up a healthcare data lake. In my final post of the series, *“Getting Started with Healthcare Data Lakes: Diving into Amazon Cognito”*, I focused on the specifics of using Amazon Cognito and Attribute Based Access Control (ABAC) to authenticate and authorize users in the healthcare data lake solution. In this blog, I detail how the solution evolved at a foundational level, including the design decisions I made and the additional features used. You can access the code samples for the solution in this Git repo for reference.
+![AWS Verified Access and AWS Network Firewall Zero Trust architecture replacing traditional VPN](/images/3-BlogsPosted/726261910_2233973207438101_1157835197418497774_n.jpg)
 
----
+In a recent AWS Networking & Content Delivery Blog post, AWS experts introduced how to combine AWS Verified Access and AWS Network Firewall to build a Zero Trust architecture based on the principle "Never Trust, Always Verify". After reading the post, I found the solution practical and worth sharing.
 
-## Architecture Guidance
+For many years, VPN has been the default way for employees to access internal systems while working remotely. However, after a user logs in successfully, VPN often grants access to a broad network range. This increases the attack surface and makes it difficult for organizations to precisely control which resources each user can access.
 
-The main change since the last presentation of the overall architecture is the decomposition of a single service into a set of smaller services to improve maintainability and flexibility. Integrating a large volume of diverse healthcare data often requires specialized connectors for each format; by keeping them encapsulated separately as microservices, we can add, remove, and modify each connector without affecting the others. The microservices are loosely coupled via publish/subscribe messaging centered in what I call the “pub/sub hub.”
+To solve this problem, AWS introduces an architecture that combines AWS Verified Access and AWS Network Firewall to implement Zero Trust. Instead of trusting users by default after login, every access request must be authenticated and evaluated before reaching the application.
 
-This solution represents what I would consider another reasonable sprint iteration from my last post. The scope is still limited to the ingestion and basic parsing of **HL7v2 messages** formatted in **Encoding Rules 7 (ER7)** through a REST interface.
+In this architecture, AWS Verified Access acts as the first access control layer. It verifies user identity, device posture, and configured security policies before allowing a connection to the application. As a result, users can access only the specific applications they are authorized for, instead of the whole internal network as in a traditional VPN model.
 
-**The solution architecture is now as follows:**
+After authentication, traffic is forwarded to AWS Network Firewall for network-layer inspection. The firewall can analyze HTTP and TCP traffic, apply security policies, perform Deep Packet Inspection (DPI), and detect abnormal or malicious traffic before forwarding it to the application or backend database.
 
-> *Figure 1. Overall architecture; colored boxes represent distinct services.*
+The overall architecture follows a clear flow:
 
----
+- The user sends an access request to the application.
+- AWS Verified Access authenticates identity and evaluates access policies.
+- Traffic is then forwarded to AWS Network Firewall for inspection.
+- The firewall applies security rules and analyzes network traffic.
+- Only valid connections are allowed to reach the application or backend resources.
 
-While the term *microservices* has some inherent ambiguity, certain traits are common:  
-- Small, autonomous, loosely coupled  
-- Reusable, communicating through well-defined interfaces  
-- Specialized to do one thing well  
-- Often implemented in an **event-driven architecture**
+AWS also describes two deployment models for different system scales.
 
-When determining where to draw boundaries between microservices, consider:  
-- **Intrinsic**: technology used, performance, reliability, scalability  
-- **Extrinsic**: dependent functionality, rate of change, reusability  
-- **Human**: team ownership, managing *cognitive load*
+With **Distributed Deployment**, AWS Network Firewall is deployed directly inside the VPC that hosts the application. This model reduces latency and allows each workload to apply its own security policy without affecting other systems.
 
----
+With **Centralized Deployment**, firewalls are centralized in an Inspection VPC to inspect traffic from multiple VPCs or AWS accounts. This approach is suitable for larger enterprises that need centralized and consistent security policy management across the infrastructure.
 
-## Technology Choices and Communication Scope
+What I find interesting about this solution is that AWS does not only focus on user authentication. It also adds another network inspection layer before allowing traffic to reach protected resources.
 
-| Communication scope                       | Technologies / patterns to consider                                                        |
-| ----------------------------------------- | ------------------------------------------------------------------------------------------ |
-| Within a single microservice              | Amazon Simple Queue Service (Amazon SQS), AWS Step Functions                               |
-| Between microservices in a single service | AWS CloudFormation cross-stack references, Amazon Simple Notification Service (Amazon SNS) |
-| Between services                          | Amazon EventBridge, AWS Cloud Map, Amazon API Gateway                                      |
+The two services complement each other: AWS Verified Access verifies "who is accessing", while AWS Network Firewall checks "whether the traffic is safe". This approach significantly reduces unauthorized access risk, even if user credentials are exposed.
 
----
+In my opinion, this architecture is a valuable reference for organizations moving from traditional VPN to Zero Trust. It improves security, provides more granular access control, scales well across multiple VPCs or AWS accounts, and aligns with modern cloud infrastructure modernization.
 
-## The Pub/Sub Hub
+## Reference
 
-Using a **hub-and-spoke** architecture (or message broker) works well with a small number of tightly related microservices.  
-- Each microservice depends only on the *hub*  
-- Inter-microservice connections are limited to the contents of the published message  
-- Reduces the number of synchronous calls since pub/sub is a one-way asynchronous *push*
-
-Drawback: **coordination and monitoring** are needed to avoid microservices processing the wrong message.
-
----
-
-## Core Microservice
-
-Provides foundational data and communication layer, including:  
-- **Amazon S3** bucket for data  
-- **Amazon DynamoDB** for data catalog  
-- **AWS Lambda** to write messages into the data lake and catalog  
-- **Amazon SNS** topic as the *hub*  
-- **Amazon S3** bucket for artifacts such as Lambda code
-
-> Only allow indirect write access to the data lake through a Lambda function → ensures consistency.
-
----
-
-## Front Door Microservice
-
-- Provides an API Gateway for external REST interaction  
-- Authentication & authorization based on **OIDC** via **Amazon Cognito**  
-- Self-managed *deduplication* mechanism using DynamoDB instead of SNS FIFO because:  
-  1. SNS deduplication TTL is only 5 minutes  
-  2. SNS FIFO requires SQS FIFO  
-  3. Ability to proactively notify the sender that the message is a duplicate  
-
----
-
-## Staging ER7 Microservice
-
-- Lambda “trigger” subscribed to the pub/sub hub, filtering messages by attribute  
-- Step Functions Express Workflow to convert ER7 → JSON  
-- Two Lambdas:  
-  1. Fix ER7 formatting (newline, carriage return)  
-  2. Parsing logic  
-- Result or error is pushed back into the pub/sub hub  
-
----
-
-## New Features in the Solution
-
-### 1. AWS CloudFormation Cross-Stack References
-Example *outputs* in the core microservice:
-```yaml
-Outputs:
-  Bucket:
-    Value: !Ref Bucket
-    Export:
-      Name: !Sub ${AWS::StackName}-Bucket
-  ArtifactBucket:
-    Value: !Ref ArtifactBucket
-    Export:
-      Name: !Sub ${AWS::StackName}-ArtifactBucket
-  Topic:
-    Value: !Ref Topic
-    Export:
-      Name: !Sub ${AWS::StackName}-Topic
-  Catalog:
-    Value: !Ref Catalog
-    Export:
-      Name: !Sub ${AWS::StackName}-Catalog
-  CatalogArn:
-    Value: !GetAtt Catalog.Arn
-    Export:
-      Name: !Sub ${AWS::StackName}-CatalogArn
+<https://aws.amazon.com/vi/blogs/networking-and-content-delivery/securing-zero-trust-access-with-aws-verified-access-and-aws-network-firewall/>

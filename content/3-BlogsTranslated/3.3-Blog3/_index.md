@@ -1,126 +1,35 @@
 ---
-title: "Blog 3"
+title: "Amazon Bedrock AgentCore"
 date: 2024-01-01
-weight: 1
+weight: 3
 chapter: false
 pre: " <b> 3.3. </b> "
 ---
-{{% notice warning %}}
-⚠️ **Note:** The information below is for reference purposes only. Please **do not copy verbatim** for your report, including this warning.
-{{% /notice %}}
 
-# Getting Started with Healthcare Data Lakes: Using Microservices
+# [Amazon Bedrock AgentCore] Building a Multi-Agent System for Financial Services on Amazon EKS
 
-Data lakes can help hospitals and healthcare facilities turn data into business insights, maintain business continuity, and protect patient privacy. A **data lake** is a centralized, managed, and secure repository to store all your data, both in its raw and processed forms for analysis. Data lakes allow you to break down data silos and combine different types of analytics to gain insights and make better business decisions.
+Hello AWS Study Group VN!
 
-This blog post is part of a larger series on getting started with setting up a healthcare data lake. In my final post of the series, *“Getting Started with Healthcare Data Lakes: Diving into Amazon Cognito”*, I focused on the specifics of using Amazon Cognito and Attribute Based Access Control (ABAC) to authenticate and authorize users in the healthcare data lake solution. In this blog, I detail how the solution evolved at a foundational level, including the design decisions I made and the additional features used. You can access the code samples for the solution in this Git repo for reference.
+Today I would like to share an interesting article from the AWS Industries Blog about building a Multi-Agent system for financial services by combining Amazon EKS and Amazon Bedrock AgentCore.
 
----
+![Amazon Bedrock AgentCore Multi-Agent architecture for financial services on Amazon EKS](/images/3-BlogsPosted/725904867_3853524508288501_6898272658705177036_n.jpg)
 
-## Architecture Guidance
+In financial institutions, a customer request rarely requires only one specialist. For example, when a customer wants to evaluate an investment portfolio, the system may need to combine multiple types of expertise such as market analysis, risk assessment, investment advisory, and financial data retrieval. If all tasks are handled by a single AI Agent, the system's capability can be limited and the quality of the answer may not reach the expected accuracy.
 
-The main change since the last presentation of the overall architecture is the decomposition of a single service into a set of smaller services to improve maintainability and flexibility. Integrating a large volume of diverse healthcare data often requires specialized connectors for each format; by keeping them encapsulated separately as microservices, we can add, remove, and modify each connector without affecting the others. The microservices are loosely coupled via publish/subscribe messaging centered in what I call the “pub/sub hub.”
+To address this challenge, AWS experts introduced a Multi-Agent architecture in which each AI Agent takes a specialized role and collaborates with other agents to complete the user's request.
 
-This solution represents what I would consider another reasonable sprint iteration from my last post. The scope is still limited to the ingestion and basic parsing of **HL7v2 messages** formatted in **Encoding Rules 7 (ER7)** through a REST interface.
+The architecture runs on Amazon EKS. At the center of the system is the Agent Gateway, which receives requests and orchestrates the appropriate AI Agents. Instead of having one AI model handle the entire process, the system is divided into multiple agents with specific responsibilities, such as Financial Advisor, Portfolio Analyst, Risk Assessment, Market Data, and Financial Tools through Model Context Protocol (MCP).
 
-**The solution architecture is now as follows:**
+After the Agent Gateway analyzes the request, the agents collaborate to collect data, perform reasoning, and exchange results before generating the final response for the user. The reasoning process is powered by Amazon Bedrock, while AgentCore adds capabilities such as Memory for conversation context, Code Interpreter for data processing, and Browser for accessing external information sources.
 
-> *Figure 1. Overall architecture; colored boxes represent distinct services.*
+What I find interesting in this architecture is that AWS separates AI Agents by business domain instead of building one agent that "knows everything". This approach allows each agent to focus on a specific expertise, making the system easier to scale, maintain, replace, or update independently without affecting the whole architecture. This is also a pattern many enterprises are adopting when building large-scale AI Agent systems.
 
----
+Beyond the AI Agents, the architecture also uses LiteLLM Proxy to standardize large language model calls, ArgoCD to deploy applications with GitOps, and Crossplane to manage infrastructure automatically on Kubernetes. As a result, the system addresses not only the AI problem but also production operations and scalability.
 
-While the term *microservices* has some inherent ambiguity, certain traits are common:  
-- Small, autonomous, loosely coupled  
-- Reusable, communicating through well-defined interfaces  
-- Specialized to do one thing well  
-- Often implemented in an **event-driven architecture**
+In my opinion, the most valuable lesson from this article is not about using many AWS services, but about designing a system with a "divide and conquer" mindset. Instead of expecting one AI to handle every task, the Multi-Agent architecture breaks the problem into smaller parts, assigns them to specialized agents, and lets an orchestrator synthesize the results. This improves response quality and makes it easier to extend the system when new requirements or business domains appear.
 
-When determining where to draw boundaries between microservices, consider:  
-- **Intrinsic**: technology used, performance, reliability, scalability  
-- **Extrinsic**: dependent functionality, rate of change, reusability  
-- **Human**: team ownership, managing *cognitive load*
+In the near future, Multi-Agent models will likely appear more often in enterprise AI systems, not only in financial services but also in customer support, healthcare, manufacturing, and internal operations. Amazon Bedrock AgentCore is therefore a notable platform for organizations that want to build and operate AI Agents at scale.
 
----
+## Reference
 
-## Technology Choices and Communication Scope
-
-| Communication scope                       | Technologies / patterns to consider                                                        |
-| ----------------------------------------- | ------------------------------------------------------------------------------------------ |
-| Within a single microservice              | Amazon Simple Queue Service (Amazon SQS), AWS Step Functions                               |
-| Between microservices in a single service | AWS CloudFormation cross-stack references, Amazon Simple Notification Service (Amazon SNS) |
-| Between services                          | Amazon EventBridge, AWS Cloud Map, Amazon API Gateway                                      |
-
----
-
-## The Pub/Sub Hub
-
-Using a **hub-and-spoke** architecture (or message broker) works well with a small number of tightly related microservices.  
-- Each microservice depends only on the *hub*  
-- Inter-microservice connections are limited to the contents of the published message  
-- Reduces the number of synchronous calls since pub/sub is a one-way asynchronous *push*
-
-Drawback: **coordination and monitoring** are needed to avoid microservices processing the wrong message.
-
----
-
-## Core Microservice
-
-Provides foundational data and communication layer, including:  
-- **Amazon S3** bucket for data  
-- **Amazon DynamoDB** for data catalog  
-- **AWS Lambda** to write messages into the data lake and catalog  
-- **Amazon SNS** topic as the *hub*  
-- **Amazon S3** bucket for artifacts such as Lambda code
-
-> Only allow indirect write access to the data lake through a Lambda function → ensures consistency.
-
----
-
-## Front Door Microservice
-
-- Provides an API Gateway for external REST interaction  
-- Authentication & authorization based on **OIDC** via **Amazon Cognito**  
-- Self-managed *deduplication* mechanism using DynamoDB instead of SNS FIFO because:  
-  1. SNS deduplication TTL is only 5 minutes  
-  2. SNS FIFO requires SQS FIFO  
-  3. Ability to proactively notify the sender that the message is a duplicate  
-
----
-
-## Staging ER7 Microservice
-
-- Lambda “trigger” subscribed to the pub/sub hub, filtering messages by attribute  
-- Step Functions Express Workflow to convert ER7 → JSON  
-- Two Lambdas:  
-  1. Fix ER7 formatting (newline, carriage return)  
-  2. Parsing logic  
-- Result or error is pushed back into the pub/sub hub  
-
----
-
-## New Features in the Solution
-
-### 1. AWS CloudFormation Cross-Stack References
-Example *outputs* in the core microservice:
-```yaml
-Outputs:
-  Bucket:
-    Value: !Ref Bucket
-    Export:
-      Name: !Sub ${AWS::StackName}-Bucket
-  ArtifactBucket:
-    Value: !Ref ArtifactBucket
-    Export:
-      Name: !Sub ${AWS::StackName}-ArtifactBucket
-  Topic:
-    Value: !Ref Topic
-    Export:
-      Name: !Sub ${AWS::StackName}-Topic
-  Catalog:
-    Value: !Ref Catalog
-    Export:
-      Name: !Sub ${AWS::StackName}-Catalog
-  CatalogArn:
-    Value: !GetAtt Catalog.Arn
-    Export:
-      Name: !Sub ${AWS::StackName}-CatalogArn
+<https://aws.amazon.com/blogs/industries/multi-agent-systems-for-financial-services-on-amazon-eks-and-agentcore/>

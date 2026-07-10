@@ -1,125 +1,102 @@
 ---
-title: "Event 1"
+title: "AWS & Swinburne Vietnam Cloud Computing Study Tour"
 date: 2024-01-01
 weight: 1
 chapter: false
 pre: " <b> 4.1. </b> "
 ---
 
-{{% notice warning %}}
-⚠️ **Lưu ý:** Các thông tin dưới đây chỉ nhằm mục đích tham khảo, vui lòng **không sao chép nguyên văn** cho bài báo cáo của bạn kể cả warning này.
-{{% /notice %}}
+# Bài thu hoạch "AWS & Swinburne Vietnam Cloud Computing Study Tour và Industry Insights" (Trực tuyến)
 
-# Bài thu hoạch “GenAI-powered App-DB Modernization workshop”
+### Thông tin sự kiện
 
-### Mục Đích Của Sự Kiện
+&emsp;**Tên sự kiện:** AWS & Swinburne Vietnam Cloud Computing Study Tour và Industry Insights
 
-- Chia sẻ best practices trong thiết kế ứng dụng hiện đại
-- Giới thiệu phương pháp DDD và event-driven architecture
-- Hướng dẫn lựa chọn compute services phù hợp
-- Giới thiệu công cụ AI hỗ trợ development lifecycle
+&emsp;**Hình thức:** Buổi chia sẻ kiến thức giữa sinh viên Swinburne Vietnam, các chuyên gia trong ngành và đại diện AWS; livestream trực tuyến
 
-### Danh Sách Diễn Giả
+&emsp;**Thời gian:** 04/07/2026
 
-- **Jignesh Shah** - Director, Open Source Databases
-- **Erica Liu** - Sr. GTM Specialist, AppMod
-- **Fabrianne Effendi** - Assc. Specialist SA, Serverless Amazon Web Services
+&emsp;**Vai trò:** Người tham dự trực tuyến (YouTube livestream)
 
-### Nội Dung Nổi Bật
+&emsp;**Đối tượng tham dự:** Sinh viên Swinburne Vietnam, chuyên gia IT và cloud practitioner
 
-#### Đưa ra các ảnh hưởng tiêu cực của kiến trúc ứng dụng cũ
+### Mục đích của sự kiện
 
-- Thời gian release sản phẩm lâu → Mất doanh thu/bỏ lỡ cơ hội
-- Hoạt động kém hiệu quả → Mất năng suất, tốn kém chi phí
-- Không tuân thủ các quy định về bảo mật → Mất an ninh, uy tín
+- Chia sẻ thông tin về thị trường việc làm cloud, xu hướng phát triển và các khoản đầu tư của AWS tại Việt Nam.
+- Thu hẹp khoảng cách giữa học thuật và data engineering trong thực tế.
+- Giúp sinh viên và người mới đi làm xây dựng tư duy, kỹ năng mềm và chiến lược nghề nghiệp phù hợp với ngành IT.
+- Nhấn mạnh vai trò của cộng đồng, học tập suốt đời và visibility trong sự phát triển nghề nghiệp.
 
-#### Chuyển đổi sang kiến trúc ứng dụng mới - Microservice Architecture
+### Danh sách diễn giả
 
-Chuyển đổi thành hệ thống modular – từng chức năng là một **dịch vụ độc lập** giao tiếp với nhau qua **sự kiện** với 3 trụ cột cốt lõi:
+- **Quỳnh Mai và Nguyễn Trần Minh Duy** (Industry Lead Officer) - Giới thiệu về quan hệ đối tác AWS-Swinburne và mục đích của study tour.
+- **Nguyễn Gia Hưng** (Head of Solution Architect, AWS Vietnam) - Thị trường việc làm cloud, thách thức, xu hướng và các khoản đầu tư của AWS tại Việt Nam.
+- **Bành Cẩm Vĩnh** (Data Engineer, Renova Cloud) - Sự khác biệt giữa học thuật và data engineering trong thực tế.
+- **Như Trần** (AWS Account Manager) - Vượt qua nỗi sợ, nâng cao kỹ năng giao tiếp và nắm bắt cơ hội nghề nghiệp.
+- **Khang Nguyễn** (Solution Architect, Cloud Kinetics & cựu sinh viên Swinburne) - Tích hợp AI, lời khuyên nghề nghiệp thực tế, phát triển tư duy và tính kiên trì.
 
-- **Queue Management**: Xử lý tác vụ bất đồng bộ
-- **Caching Strategy:** Tối ưu performance
-- **Message Handling:** Giao tiếp linh hoạt giữa services
+### Nội dung nổi bật
 
-#### Domain-Driven Design (DDD)
+#### Nguyễn Gia Hưng - Thị trường việc làm cloud và đầu tư của AWS tại Việt Nam
 
-- **Phương pháp 4 bước**: Xác định domain events → sắp xếp timeline → identify actors → xác định bounded contexts
-- **Case study bookstore**: Minh họa cách áp dụng DDD thực tế
-- **Context mapping**: 7 patterns tích hợp bounded contexts
+Thị trường cloud tại Việt Nam, đặc biệt là AWS, đã tăng trưởng gần 20 lần trong 6 năm, trong khi các trung tâm dữ liệu truyền thống giảm 10 lần. Chiến lược Cloud First hiện đang chiếm ưu thế trong các doanh nghiệp lớn.
 
-#### Event-Driven Architecture
+AWS đầu tư mạnh vào phát triển nhân tài địa phương và hạ tầng như CDN nodes, Local Zones độ trễ thấp. Việc xây dựng AWS Region tại Việt Nam ước tính cần mức đầu tư rất lớn và thời gian hoàn vốn dài, thể hiện cam kết dài hạn đối với thị trường Việt Nam.
 
-- **3 patterns tích hợp**: Publish/Subscribe, Point-to-point, Streaming
-- **Lợi ích**: Loose coupling, scalability, resilience
-- **So sánh sync vs async**: Hiểu rõ trade-offs (sự đánh đổi)
+Các talent hub đã được thiết lập tại các thành phố lớn như TP.HCM, Hà Nội và Đà Nẵng, với nhiều công ty quốc tế lớn vận hành trung tâm IT tại Việt Nam. Vị trí thực tập và junior hiện đòi hỏi kỹ năng như Kubernetes, kiến trúc cloud-native và hiểu biết nền tảng về cloud.
 
-#### Compute Evolution
+Sự nghiệp phát triển dựa trên ba trụ cột: năng lực, visibility và tính nhất quán. Khoảng 90% vị trí việc làm không được đăng công khai mà được lấp đầy qua mạng lưới giới thiệu nội bộ hoặc cộng đồng, vì vậy networking và tham gia cộng đồng là điều rất quan trọng.
 
-- **Shared Responsibility Model**: Từ EC2 → ECS → Fargate → Lambda
-- **Serverless benefits**: No server management, auto-scaling, pay-for-value
-- **Functions vs Containers**: Criteria lựa chọn phù hợp
+#### Bành Cẩm Vĩnh - Học thuật vs Data Engineering thực tế
 
-#### Amazon Q Developer
+Dự án học thuật thường dùng dữ liệu sạch, quy mô nhỏ và timeline linh hoạt, trong khi công việc thực tế đòi hỏi xử lý dữ liệu lộn xộn, yêu cầu thay đổi liên tục và ảnh hưởng trực tiếp đến kinh doanh.
 
-- **SDLC automation**: Từ planning đến maintenance
-- **Code transformation**: Java upgrade, .NET modernization
-- **AWS Transform agents**: VMware, Mainframe, .NET migration
+Các kỹ năng như đảm bảo chất lượng dữ liệu, xử lý lỗi, bảo mật và cộng tác liên phòng ban rất quan trọng trong thực tế nhưng hiếm khi được nhấn mạnh trong chương trình đại học. Kiến thức nền tảng về database, lập trình, thuật toán, distributed systems và API vẫn thiết yếu cho cả phỏng vấn lẫn công việc hàng ngày.
 
-### Những Gì Học Được
+#### Như Trần - Vượt qua nỗi sợ và kỹ năng mềm
 
-#### Tư Duy Thiết Kế
+Việc nhận diện và vượt qua nỗi sợ thất bại, nói trước đám đông và giao tiếp sai là điều thiết yếu để phát triển nghề nghiệp. Chủ động trao đổi với sếp và đồng nghiệp giúp cải thiện quan hệ làm việc, đồng thời tăng visibility trong tổ chức.
 
-- **Business-first approach**: Luôn bắt đầu từ business domain, không phải technology
-- **Ubiquitous language**: Importance của common vocabulary giữa business và tech teams
-- **Bounded contexts**: Cách identify và manage complexity trong large systems
+Diễn giả cũng nhấn mạnh tự nhận thức, trí tuệ cảm xúc và khả năng phục hồi là các yếu tố cốt lõi dẫn đến thành công trong sự nghiệp.
 
-#### Kiến Trúc Kỹ Thuật
+#### Khang Nguyễn - AI, tư duy nghề nghiệp và kiên trì
 
-- **Event storming technique**: Phương pháp thực tế để mô hình hóa quy trình kinh doanh
-- Sử dụng **Event-driven communication** thay vì synchronous calls
-- **Integration patterns**: Hiểu khi nào dùng sync, async, pub/sub, streaming
-- **Compute spectrum**: Criteria chọn từ VM → containers → serverless
+Chương trình học đại học là nền tảng vững chắc nhưng chưa đủ để sẵn sàng cho ngành. Công cụ AI như coding assistant hoặc diagram generator đã trở thành một phần quan trọng trong workflow hiện đại, nhưng vẫn đòi hỏi tư duy phản biện và kỹ năng kiểm chứng.
 
-#### Chiến Lược Hiện Đại Hóa
+Thứ tự ưu tiên khi tuyển dụng được chia sẻ là: thái độ, kỹ năng, kinh nghiệm và đặc điểm cá nhân. Các yếu tố thành công chính gồm đặt câu hỏi sâu sắc, duy trì growth mindset, cộng tác hiệu quả liên ngành và nỗ lực bền vững.
 
-- **Phased approach**: Không rush, phải có roadmap rõ ràng
-- **7Rs framework**: Nhiều con đường khác nhau tùy thuộc vào đặc điểm của mỗi ứng dụng
-- **ROI measurement**: Cost reduction + business agility
+### Những gì học được
 
-### Ứng Dụng Vào Công Việc
+- Thị trường cloud tại Việt Nam đang tăng trưởng mạnh, tạo ra nhu cầu lớn cho các cloud professional có kỹ năng thực tế.
+- Học thuật và công việc thực tế là hai môi trường khác nhau căn bản: dự án thực có dữ liệu lộn xộn, yêu cầu thay đổi liên tục, rủi ro kinh doanh và phụ thuộc liên phòng ban.
+- Networking và tham gia cộng đồng không phải là tùy chọn, vì nhiều cơ hội nghề nghiệp được lấp đầy qua mạng lưới giới thiệu.
+- AI là công cụ hỗ trợ, không phải sự thay thế cho tư duy. Thành thạo công cụ AI cần đi cùng nền tảng vững chắc và khả năng đánh giá phản biện.
+- Thành công trong sự nghiệp cần kết hợp năng lực, visibility và tính nhất quán. Kỹ năng kỹ thuật đơn thuần là chưa đủ nếu không có sự hiện diện và nỗ lực bền vững.
+- Kỹ năng mềm như giao tiếp, tự nhận thức và khả năng phục hồi quan trọng không kém kỹ năng kỹ thuật.
 
-- **Áp dụng DDD** cho project hiện tại: Event storming sessions với business team
-- **Refactor microservices**: Sử dụng bounded contexts để identify service boundaries
-- **Implement event-driven patterns**: Thay thế một số sync calls bằng async messaging
-- **Serverless adoption**: Pilot AWS Lambda cho một số use cases phù hợp
-- **Try Amazon Q Developer**: Integrate vào development workflow để boost productivity
+### Ứng dụng vào công việc
 
-### Trải nghiệm trong event
+Anh Nguyễn Gia Hưng là mentor thực tập của mình tại AWS Vietnam, nên việc được nghe góc nhìn rộng hơn của anh về thị trường cloud và chiến lược phát triển nghề nghiệp giúp mình hiểu sâu hơn những gì đang trải nghiệm trực tiếp trong chương trình FCAJ.
 
-Tham gia workshop **“GenAI-powered App-DB Modernization”** là một trải nghiệm rất bổ ích, giúp tôi có cái nhìn toàn diện về cách hiện đại hóa ứng dụng và cơ sở dữ liệu bằng các phương pháp và công cụ hiện đại. Một số trải nghiệm nổi bật:
+Cộng đồng First Cloud AI Journey được nhắc đến xuyên suốt buổi này chính là chương trình mình đang tham gia, khiến framework phát triển nghề nghiệp "Năng lực x Visibility x Tính nhất quán" trở nên áp dụng được ngay vào tình huống hiện tại.
 
-#### Học hỏi từ các diễn giả có chuyên môn cao
-- Các diễn giả đến từ AWS và các tổ chức công nghệ lớn đã chia sẻ **best practices** trong thiết kế ứng dụng hiện đại.
-- Qua các case study thực tế, tôi hiểu rõ hơn cách áp dụng **Domain-Driven Design (DDD)** và **Event-Driven Architecture** vào các project lớn.
+Khoảng cách giữa dự án học thuật và kỹ thuật thực tế mà anh Bành Cẩm Vĩnh mô tả phản ánh đúng những gì mình trải qua trong dự án EAM Workspace, đặc biệt là tầm quan trọng của tính nhất quán seed data, xử lý migration conflict và cộng tác liên nhánh.
 
-#### Trải nghiệm kỹ thuật thực tế
-- Tham gia các phiên trình bày về **event storming** giúp tôi hình dung cách **mô hình hóa quy trình kinh doanh** thành các domain events.
-- Học cách **phân tách microservices** và xác định **bounded contexts** để quản lý sự phức tạp của hệ thống lớn.
-- Hiểu rõ trade-offs giữa **synchronous và asynchronous communication** cũng như các pattern tích hợp như **pub/sub, point-to-point, streaming**.
+Lời khuyên của chị Như Trần về việc vượt qua nỗi sợ giao tiếp liên quan trực tiếp đến việc chuẩn bị cho buổi báo cáo thực tập cuối kỳ. Thứ bậc ưu tiên của anh Khang Nguyễn cũng là một framework tự đánh giá hữu ích khi mình chuẩn bị ứng tuyển việc làm toàn thời gian sau khi tốt nghiệp.
 
-#### Ứng dụng công cụ hiện đại
-- Trực tiếp tìm hiểu về **Amazon Q Developer**, công cụ AI hỗ trợ SDLC từ lập kế hoạch đến maintenance.
-- Học cách **tự động hóa code transformation** và pilot serverless với **AWS Lambda**, từ đó nâng cao năng suất phát triển.
+### Trải nghiệm trong sự kiện
 
-#### Kết nối và trao đổi
-- Workshop tạo cơ hội trao đổi trực tiếp với các chuyên gia, đồng nghiệp và team business, giúp **nâng cao ngôn ngữ chung (ubiquitous language)** giữa business và tech.
-- Qua các ví dụ thực tế, tôi nhận ra tầm quan trọng của **business-first approach**, luôn bắt đầu từ nhu cầu kinh doanh thay vì chỉ tập trung vào công nghệ.
+Buổi này đặc biệt có ý nghĩa vì anh Nguyễn Gia Hưng, mentor thực tập của mình, là một trong những diễn giả chính. Được nghe góc nhìn cấp ngành của anh về thị trường cloud, cam kết dài hạn của AWS tại Việt Nam và chiến lược phát triển nghề nghiệp giúp nội dung trở nên chân thực và mang tính cá nhân hơn.
 
-#### Bài học rút ra
-- Việc áp dụng DDD và event-driven patterns giúp giảm **coupling**, tăng **scalability** và **resilience** cho hệ thống.
-- Chiến lược hiện đại hóa cần **phased approach** và đo lường **ROI**, không nên vội vàng chuyển đổi toàn bộ hệ thống.
-- Các công cụ AI như Amazon Q Developer có thể **boost productivity** nếu được tích hợp vào workflow phát triển hiện tại.
+Một vài điều mình suy nghĩ:
 
-#### Một số hình ảnh khi tham gia sự kiện
-* Thêm các hình ảnh của các bạn tại đây
-> Tổng thể, sự kiện không chỉ cung cấp kiến thức kỹ thuật mà còn giúp tôi thay đổi cách tư duy về thiết kế ứng dụng, hiện đại hóa hệ thống và phối hợp hiệu quả hơn giữa các team.
+- Việc nhiều công việc được lấp đầy qua mạng lưới, không phải bảng tuyển dụng công khai, thay đổi cách mình nhìn nhận giá trị của cộng đồng như FCAJ và AWS Study Group.
+- Phần data engineering của anh Bành Cẩm Vĩnh xác nhận điều mình đã cảm nhận trong dự án EAM Workspace: khoảng cách giữa "chạy được trong lý thuyết" và "chạy được trong môi trường production với dữ liệu thật và ràng buộc kinh doanh thật" là rất lớn.
+- Phần của chị Như Trần về việc vượt qua nỗi sợ giúp mình nhìn lại sự do dự khi lên tiếng trong môi trường nhóm như một vấn đề cần cải thiện.
+- Hành trình của anh Khang Nguyễn từ sinh viên Swinburne đến Solution Architect tại một công ty cloud cho thấy một con đường cụ thể và thực tế cho sinh viên theo đuổi lĩnh vực cloud.
+
+### Một số ảnh chụp màn hình khi tham gia sự kiện
+
+![AWS & Swinburne Vietnam Cloud Computing Study Tour - livestream screenshot](/images/4-EventParticipated/event1-cloud-study-tour.png)
+
+Tổng thể, sự kiện này mang đến góc nhìn toàn diện, thành thật và có tính ứng dụng cao về những gì cần thiết để xây dựng sự nghiệp cloud tại Việt Nam, kết hợp dữ liệu thị trường, thực tế kỹ thuật, phát triển kỹ năng mềm và chiến lược nghề nghiệp.

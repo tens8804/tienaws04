@@ -1,125 +1,103 @@
 ---
-title: "Event 2"
+title: "FC Community Day"
 date: 2024-01-01
-weight: 1
+weight: 2
 chapter: false
 pre: " <b> 4.2. </b> "
 ---
 
-{{% notice warning %}}
-⚠️ **Lưu ý:** Các thông tin dưới đây chỉ nhằm mục đích tham khảo, vui lòng **không sao chép nguyên văn** cho bài báo cáo của bạn kể cả warning này.
-{{% /notice %}}
+# Bài thu hoạch "FC Community Day" (Trực tuyến)
 
-# Bài thu hoạch “GenAI-powered App-DB Modernization workshop”
+### Thông tin sự kiện
 
-### Mục Đích Của Sự Kiện
+&emsp;**Tên sự kiện:** FC Community Day
 
-- Chia sẻ best practices trong thiết kế ứng dụng hiện đại
-- Giới thiệu phương pháp DDD và event-driven architecture
-- Hướng dẫn lựa chọn compute services phù hợp
-- Giới thiệu công cụ AI hỗ trợ development lifecycle
+&emsp;**Hình thức:** Sự kiện cộng đồng hàng tháng, tổ chức tại văn phòng (Tầng 26 & 36) và livestream đồng thời trên YouTube
 
-### Danh Sách Diễn Giả
+&emsp;**Thời gian:** 27/06/2026
 
-- **Jignesh Shah** - Director, Open Source Databases
-- **Erica Liu** - Sr. GTM Specialist, AppMod
-- **Fabrianne Effendi** - Assc. Specialist SA, Serverless Amazon Web Services
+&emsp;**Vai trò:** Người tham dự trực tuyến (xem qua YouTube livestream)
 
-### Nội Dung Nổi Bật
+&emsp;**Đối tượng tham dự:** Sinh viên, người mới đi làm và các cloud practitioner
 
-#### Đưa ra các ảnh hưởng tiêu cực của kiến trúc ứng dụng cũ
+### Mục đích của sự kiện
 
-- Thời gian release sản phẩm lâu → Mất doanh thu/bỏ lỡ cơ hội
-- Hoạt động kém hiệu quả → Mất năng suất, tốn kém chi phí
-- Không tuân thủ các quy định về bảo mật → Mất an ninh, uy tín
+- Chia sẻ hành trình sự nghiệp thực tế trong ngành cloud engineering và nền tảng cloud ứng dụng AI.
+- Trình diễn các ứng dụng thực tế của Voice AI trong bối cảnh tiếng Việt.
+- Giới thiệu DevOps AI Agent để tự động hóa quản lý sự cố.
+- Khám phá cách AI đang thay đổi quy trình nhân sự trong doanh nghiệp.
+- Thảo luận về triển khai AI an toàn trong doanh nghiệp sử dụng AWS private networking.
 
-#### Chuyển đổi sang kiến trúc ứng dụng mới - Microservice Architecture
+### Danh sách diễn giả
 
-Chuyển đổi thành hệ thống modular – từng chức năng là một **dịch vụ độc lập** giao tiếp với nhau qua **sự kiện** với 3 trụ cột cốt lõi:
+- **Steve Trần** - Cloud Thinker, hành trình sự nghiệp Cloud Engineer.
+- **Hiếu Nghị, Anh Kiệt, Anh Trung** - Voice AI tại Việt Nam.
+- **Nguyên và Bảo** (Cloud Kinetics) - DevOps AI Agent.
+- **Trưởng và Minh Anh** (Noventis) - AI & Nhân sự trong Doanh nghiệp.
+- **Toàn Nguyễn và Hiếu Nghị** - Amazon Q & Triển khai AI an toàn trong doanh nghiệp.
 
-- **Queue Management**: Xử lý tác vụ bất đồng bộ
-- **Caching Strategy:** Tối ưu performance
-- **Message Handling:** Giao tiếp linh hoạt giữa services
+### Nội dung nổi bật
 
-#### Domain-Driven Design (DDD)
+#### Steve Trần - Hành trình sự nghiệp Cloud và nền tảng Cloud Thinker
 
-- **Phương pháp 4 bước**: Xác định domain events → sắp xếp timeline → identify actors → xác định bounded contexts
-- **Case study bookstore**: Minh họa cách áp dụng DDD thực tế
-- **Context mapping**: 7 patterns tích hợp bounded contexts
+Steve Trần chia sẻ con đường cá nhân từ contact center, tự học cloud, thi chứng chỉ, chuyển hướng sang AWS và phát triển từ Developer lên Solution Architect. Câu chuyện này cho thấy sự kiên trì, kinh nghiệm dự án thực tế và khả năng học liên tục là những yếu tố rất quan trọng trong ngành cloud.
 
-#### Event-Driven Architecture
+Diễn giả cũng giới thiệu Cloud Thinker - nền tảng vận hành cloud ứng dụng AI, có thể rút ngắn thời gian điều tra sự cố, tối ưu chi phí bằng FinOps AI và tăng cường bảo mật thông qua kiểm thử liên tục. Mô hình human-in-the-loop được nhấn mạnh cho các quyết định quan trọng trong môi trường production.
 
-- **3 patterns tích hợp**: Publish/Subscribe, Point-to-point, Streaming
-- **Lợi ích**: Loose coupling, scalability, resilience
-- **So sánh sync vs async**: Hiểu rõ trade-offs (sự đánh đổi)
+#### Voice AI tại Việt Nam
 
-#### Compute Evolution
+Phần Voice AI trình bày pipeline cơ bản gồm audio input, Speech-to-Text, Language Model và Text-to-Speech. Tiếng Việt là ngôn ngữ ít tài nguyên, có nhiều khác biệt về giọng vùng miền, thanh điệu và cách ngắt nghỉ tự nhiên nên cần các mô hình chuyên biệt.
 
-- **Shared Responsibility Model**: Từ EC2 → ECS → Fargate → Lambda
-- **Serverless benefits**: No server management, auto-scaling, pay-for-value
-- **Functions vs Containers**: Criteria lựa chọn phù hợp
+Nhóm diễn giả chia sẻ các ứng dụng thực tế trong ngân hàng Việt Nam, trong đó Voice AI không chỉ trả lời FAQ mà còn có thể gọi công cụ để hỗ trợ tự động hóa một số giao dịch như khóa thẻ. Các yếu tố như streaming I/O, versioning, audit log, fallback sang người thật và giám sát thời gian thực cũng rất quan trọng.
 
-#### Amazon Q Developer
+#### DevOps AI Agent bởi Cloud Kinetics
 
-- **SDLC automation**: Từ planning đến maintenance
-- **Code transformation**: Java upgrade, .NET modernization
-- **AWS Transform agents**: VMware, Mainframe, .NET migration
+DevOps AI Agent được giới thiệu như một giải pháp giảm thời gian phát hiện và xử lý sự cố trong hệ thống cloud phức tạp. Thay vì debug thủ công qua nhiều nguồn log và nhiều team, AI Agent có thể được kích hoạt bởi alert hoặc yêu cầu của người dùng, sau đó tổng hợp log, sinh giả thuyết, xác thực và đề xuất biện pháp giảm thiểu.
 
-### Những Gì Học Được
+Các kết quả thực tế được chia sẻ cho thấy AI Agent có thể giảm đáng kể MTTD và MTTR, giúp đội vận hành xử lý sự cố nhanh hơn và có thêm đề xuất cải thiện hệ thống về lâu dài.
 
-#### Tư Duy Thiết Kế
+#### AI & Nhân sự trong Doanh nghiệp
 
-- **Business-first approach**: Luôn bắt đầu từ business domain, không phải technology
-- **Ubiquitous language**: Importance của common vocabulary giữa business và tech teams
-- **Bounded contexts**: Cách identify và manage complexity trong large systems
+Phần Noventis chia sẻ cách Amazon Q có thể hỗ trợ quy trình nhân sự như phân tích CV, đối chiếu kỹ năng, tạo JD và tạo báo cáo đánh giá ứng viên. AI giúp tăng tốc sàng lọc và chuẩn hóa báo cáo, nhưng quyết định tuyển dụng quan trọng vẫn cần con người đánh giá.
 
-#### Kiến Trúc Kỹ Thuật
+Nội dung này cũng nhắc nhở ứng viên cần viết CV rõ ràng, có cấu trúc và khớp với JD vì AI screening đang ngày càng phổ biến trong doanh nghiệp.
 
-- **Event storming technique**: Phương pháp thực tế để mô hình hóa quy trình kinh doanh
-- Sử dụng **Event-driven communication** thay vì synchronous calls
-- **Integration patterns**: Hiểu khi nào dùng sync, async, pub/sub, streaming
-- **Compute spectrum**: Criteria chọn từ VM → containers → serverless
+#### Triển khai AI an toàn trong doanh nghiệp với Amazon Q và MCP
 
-#### Chiến Lược Hiện Đại Hóa
+Phần cuối thảo luận cách triển khai AI agent riêng tư bằng AWS PrivateLink, VPC Interface Endpoints, Amazon Q, MCP server và AWS Cognito. Mục tiêu là cho phép AI truy cập hệ thống nội bộ mà không để lộ dữ liệu nhạy cảm ra internet công cộng.
 
-- **Phased approach**: Không rush, phải có roadmap rõ ràng
-- **7Rs framework**: Nhiều con đường khác nhau tùy thuộc vào đặc điểm của mỗi ứng dụng
-- **ROI measurement**: Cost reduction + business agility
+Kiến trúc này giúp doanh nghiệp kiểm soát traffic trong mạng nội bộ AWS, mã hóa kết nối và giảm rủi ro bảo mật khi triển khai AI trong môi trường production.
 
-### Ứng Dụng Vào Công Việc
+### Những gì học được
 
-- **Áp dụng DDD** cho project hiện tại: Event storming sessions với business team
-- **Refactor microservices**: Sử dụng bounded contexts để identify service boundaries
-- **Implement event-driven patterns**: Thay thế một số sync calls bằng async messaging
-- **Serverless adoption**: Pilot AWS Lambda cho một số use cases phù hợp
-- **Try Amazon Q Developer**: Integrate vào development workflow để boost productivity
+- Cloud và AI đang thay đổi nhanh chóng cách doanh nghiệp vận hành, từ cloud operations đến HR và voice interface.
+- Voice AI cho tiếng Việt cần mô hình chuyên biệt để xử lý giọng vùng miền, thanh điệu và ngữ cảnh hội thoại.
+- DevOps AI Agent có thể giảm đáng kể thời gian phát hiện và xử lý sự cố trong kiến trúc service phức tạp.
+- AI trong HR giúp tăng tốc tuyển dụng nhưng không thay thế hoàn toàn phán đoán của con người.
+- Triển khai AI an toàn trong VPC riêng tư là điều cần thiết với doanh nghiệp xử lý dữ liệu nhạy cảm.
+- Dự án thực tế và việc đào sâu 1-2 kỹ năng cốt lõi quan trọng hơn việc chỉ thu thập nhiều chứng chỉ.
 
-### Trải nghiệm trong event
+### Ứng dụng vào công việc
 
-Tham gia workshop **“GenAI-powered App-DB Modernization”** là một trải nghiệm rất bổ ích, giúp tôi có cái nhìn toàn diện về cách hiện đại hóa ứng dụng và cơ sở dữ liệu bằng các phương pháp và công cụ hiện đại. Một số trải nghiệm nổi bật:
+Cách tiếp cận của Cloud Thinker về việc dùng AI để rút ngắn thời gian điều tra sự cố liên quan trực tiếp đến monitoring stack mình đang học như CloudWatch và Grafana. Mô hình DevOps AI Agent cũng là framework hữu ích để suy nghĩ về AI tool cho cloud operations, không chỉ là chatbot đơn thuần.
 
-#### Học hỏi từ các diễn giả có chuyên môn cao
-- Các diễn giả đến từ AWS và các tổ chức công nghệ lớn đã chia sẻ **best practices** trong thiết kế ứng dụng hiện đại.
-- Qua các case study thực tế, tôi hiểu rõ hơn cách áp dụng **Domain-Driven Design (DDD)** và **Event-Driven Architecture** vào các project lớn.
+Pipeline Voice AI giúp mình hiểu rõ hơn cách các sản phẩm voice thời gian thực được xây dựng, khác biệt với quy trình LLM text-based quen thuộc hơn. Phần AI trong HR cũng nhắc mình về tầm quan trọng của việc viết CV rõ ràng, có cấu trúc và phù hợp với JD.
 
-#### Trải nghiệm kỹ thuật thực tế
-- Tham gia các phiên trình bày về **event storming** giúp tôi hình dung cách **mô hình hóa quy trình kinh doanh** thành các domain events.
-- Học cách **phân tách microservices** và xác định **bounded contexts** để quản lý sự phức tạp của hệ thống lớn.
-- Hiểu rõ trade-offs giữa **synchronous và asynchronous communication** cũng như các pattern tích hợp như **pub/sub, point-to-point, streaming**.
+Kiến trúc triển khai VPC an toàn với PrivateLink, private DNS và Cognito kết nối trực tiếp với kiến thức về IAM và VPC networking mình đã học trong chương trình thực tập.
 
-#### Ứng dụng công cụ hiện đại
-- Trực tiếp tìm hiểu về **Amazon Q Developer**, công cụ AI hỗ trợ SDLC từ lập kế hoạch đến maintenance.
-- Học cách **tự động hóa code transformation** và pilot serverless với **AWS Lambda**, từ đó nâng cao năng suất phát triển.
+### Trải nghiệm trong sự kiện
 
-#### Kết nối và trao đổi
-- Workshop tạo cơ hội trao đổi trực tiếp với các chuyên gia, đồng nghiệp và team business, giúp **nâng cao ngôn ngữ chung (ubiquitous language)** giữa business và tech.
-- Qua các ví dụ thực tế, tôi nhận ra tầm quan trọng của **business-first approach**, luôn bắt đầu từ nhu cầu kinh doanh thay vì chỉ tập trung vào công nghệ.
+FC Community Day lần này bao phủ phạm vi chủ đề rất rộng: từ câu chuyện sự nghiệp cloud, nền tảng cloud ops ứng dụng AI, Voice AI tiếng Việt, tự động hóa quản lý sự cố DevOps, AI trong HR đến triển khai AI an toàn trong doanh nghiệp.
 
-#### Bài học rút ra
-- Việc áp dụng DDD và event-driven patterns giúp giảm **coupling**, tăng **scalability** và **resilience** cho hệ thống.
-- Chiến lược hiện đại hóa cần **phased approach** và đo lường **ROI**, không nên vội vàng chuyển đổi toàn bộ hệ thống.
-- Các công cụ AI như Amazon Q Developer có thể **boost productivity** nếu được tích hợp vào workflow phát triển hiện tại.
+Một số điều mình rút ra:
 
-#### Một số hình ảnh khi tham gia sự kiện
-* Thêm các hình ảnh của các bạn tại đây
-> Tổng thể, sự kiện không chỉ cung cấp kiến thức kỹ thuật mà còn giúp tôi thay đổi cách tư duy về thiết kế ứng dụng, hiện đại hóa hệ thống và phối hợp hiệu quả hơn giữa các team.
+- Hành trình của Steve Trần vừa truyền cảm hứng vừa thực tế, cho thấy tự học và kinh nghiệm dự án có vai trò lớn trong phát triển nghề cloud.
+- Phần Voice AI khiến mình thấy rõ độ phức tạp khi xử lý tiếng Việt, đặc biệt với giọng vùng miền và ngữ cảnh hội thoại tự nhiên.
+- Demo DevOps AI Agent là phần kỹ thuật cụ thể nhất, giúp ý tưởng "AI cho vận hành" trở nên thực tế hơn.
+- Phần HR AI nhắc mình rằng CV cần được cấu trúc tốt hơn vì AI hiện nay đã tham gia nhiều hơn vào quá trình sàng lọc ứng viên.
+
+### Một số hình ảnh / ảnh chụp màn hình khi tham gia sự kiện
+
+![FC Community Day - AgenticOps for your Cloud screenshot](/images/4-EventParticipated/event2-fc-community-day.png)
+
+Tổng thể, FC Community Day giúp mình có cái nhìn rộng hơn về hướng đi của AI và cloud trong các doanh nghiệp Việt Nam, từ hạ tầng cloud đến voice, HR và phản ứng sự cố. Sự kiện củng cố niềm tin rằng các kỹ năng cloud và AI mình đang xây dựng trong kỳ thực tập này thực sự có nhu cầu thực tế.

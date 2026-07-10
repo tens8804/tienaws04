@@ -1,13 +1,20 @@
 ---
-title : "Prerequiste"
+title : "Prerequisite"
 date : 2024-01-01 
 weight : 2 
 chapter : false
 pre : " <b> 5.2. </b> "
 ---
 
+#### Environment
+
++ **Region:** N. Virginia (`us-east-1`)
++ **Tools:** AWS Management Console, AWS CLI, Session Manager, and a web browser
++ **Main services:** S3, VPC, VPC Endpoint, EC2, Systems Manager, Transit Gateway, Site-to-Site VPN, Route 53 Resolver, IAM, CloudFormation, and CloudWatch
+
 #### IAM permissions
-Add the following IAM permission policy to your user account to deploy and cleanup this workshop.
+
+For a production environment, permissions should be narrowed to the exact resources used by this project. For the workshop deployment, attach the following temporary IAM permission policy to your user account, then remove it after clean-up.
 ```
 {
     "Version": "2012-10-17",
@@ -218,7 +225,7 @@ Add the following IAM permission policy to your user account to deploy and clean
 
 #### Provision resources using CloudFormation
 
-In this lab, we will use **N.Virginia region (us-east-1)**.
+This project uses **N. Virginia region (us-east-1)**.
 
 To prepare the workshop environment, deploy this **CloudFormation Template** (click link): [PrivateLinkWorkshop ](https://us-east-1.console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/quickcreate?templateURL=https://s3.us-east-1.amazonaws.com/reinvent-endpoints-builders-session/Nested.yaml&stackName=PLCloudSetup). Accept all of the defaults when deploying the template. 
 
@@ -229,7 +236,7 @@ To prepare the workshop environment, deploy this **CloudFormation Template** (cl
 
 ![create stack](/images/5-Workshop/5.2-Prerequisite/create-stack2.png)
 
-The **ClouddFormation** deployment requires about 15 minutes to complete.
+The **CloudFormation** deployment requires about 15 minutes to complete.
 
 ![complete](/images/5-Workshop/5.2-Prerequisite/complete.png)
 
@@ -240,3 +247,11 @@ The **ClouddFormation** deployment requires about 15 minutes to complete.
 + **3 EC2s** have been created
 
 ![EC2](/images/5-Workshop/5.2-Prerequisite/ec2.png)
+
+#### Validation checklist before starting
+
++ The CloudFormation stacks show `CREATE_COMPLETE`.
++ The two VPCs, route tables, and subnets are available in the VPC console.
++ The test EC2 instances appear in Systems Manager Fleet Manager or Session Manager.
++ CloudWatch log groups related to the stack can be viewed for troubleshooting.
++ The S3 bucket used for testing is not public.

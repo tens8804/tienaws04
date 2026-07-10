@@ -1,126 +1,103 @@
 ---
-title: "Event 2"
+title: "FC Community Day"
 date: 2024-01-01
-weight: 1
+weight: 2
 chapter: false
 pre: " <b> 4.2. </b> "
 ---
 
-{{% notice warning %}}
-⚠️ **Note:** The information below is for reference purposes only. Please **do not copy it verbatim** into your report, including this warning.
-{{% /notice %}}
+# Summary Report: "FC Community Day" (Online)
 
-# Summary Report: “GenAI-powered App-DB Modernization workshop”
+### Event Information
+
+&emsp;**Event Name:** FC Community Day
+
+&emsp;**Format:** Monthly community event hosted at the office and livestreamed on YouTube
+
+&emsp;**Date:** June 27, 2026
+
+&emsp;**Role:** Online attendee (YouTube livestream)
+
+&emsp;**Audience:** Students, early-career professionals, and cloud practitioners
 
 ### Event Objectives
 
-- Share best practices in modern application design
-- Introduce Domain-Driven Design (DDD) and event-driven architecture
-- Provide guidance on selecting the right compute services
-- Present AI tools to support the development lifecycle
+- Share real career journeys in cloud engineering and AI-powered cloud platforms.
+- Demonstrate practical Voice AI applications for the Vietnamese language context.
+- Introduce DevOps AI Agents for incident management automation.
+- Explore how AI is changing HR workflows in enterprises.
+- Discuss secure enterprise AI deployment using AWS private networking.
 
 ### Speakers
 
-- **Jignesh Shah** – Director, Open Source Databases
-- **Erica Liu** – Sr. GTM Specialist, AppMod
-- **Fabrianne Effendi** – Assc. Specialist SA, Serverless Amazon Web Services
+- **Steve Tran** - Cloud Thinker and Cloud Engineer career journey.
+- **Hieu Nghi, Anh Kiet, Anh Trung** - Voice AI in Vietnam.
+- **Nguyen and Bao** (Cloud Kinetics) - DevOps AI Agent.
+- **Truong and Minh Anh** (Noventis) - AI & HR in enterprises.
+- **Toan Nguyen and Hieu Nghi** - Amazon Q and secure enterprise AI deployment.
 
 ### Key Highlights
 
-#### Identifying the drawbacks of legacy application architecture
+#### Steve Tran - Cloud career journey and Cloud Thinker
 
-- Long product release cycles → Lost revenue/missed opportunities  
-- Inefficient operations → Reduced productivity, higher costs  
-- Non-compliance with security regulations → Security breaches, loss of reputation  
+Steve Tran shared his career path from working in a contact center, self-studying cloud, earning certifications, shifting toward AWS, and growing from Developer to Solution Architect. His story showed that persistence, real project experience, and continuous learning are essential in cloud careers.
 
-#### Transitioning to modern application architecture – Microservices
+He also introduced Cloud Thinker, an AI-powered cloud operations platform that can shorten incident investigation time, optimize cost through FinOps AI, and improve security with continuous testing. Human-in-the-loop was emphasized for important production decisions.
 
-Migrating to a modular system — each function is an **independent service** communicating via **events**, built on three core pillars:
+#### Voice AI in Vietnam
 
-- **Queue Management**: Handle asynchronous tasks  
-- **Caching Strategy**: Optimize performance  
-- **Message Handling**: Flexible inter-service communication  
+The Voice AI session explained the standard pipeline of audio input, Speech-to-Text, Language Model, and Text-to-Speech. Vietnamese is a low-resource language with challenges such as regional accents, tones, gender, and natural pauses in conversation, so specialized models are required.
 
-#### Domain-Driven Design (DDD)
+The speakers shared real banking use cases in Vietnam where Voice AI can go beyond FAQ responses and use tool calling to automate actions such as card locking. Features such as streaming I/O, versioning, audit logs, human fallback, and real-time supervisor monitoring are important in production.
 
-- **Four-step method**: Identify domain events → arrange timeline → identify actors → define bounded contexts  
-- **Bookstore case study**: Demonstrates real-world DDD application  
-- **Context mapping**: 7 patterns for integrating bounded contexts  
+#### DevOps AI Agent by Cloud Kinetics
 
-#### Event-Driven Architecture
+The DevOps AI Agent was introduced as a way to reduce detection and recovery time in complex cloud systems. Instead of manually debugging through distributed logs and multiple teams, the agent can be triggered by alerts or user requests, collect logs, generate hypotheses, validate them, and suggest mitigation steps.
 
-- **3 integration patterns**: Publish/Subscribe, Point-to-point, Streaming  
-- **Benefits**: Loose coupling, scalability, resilience  
-- **Sync vs async comparison**: Understanding the trade-offs  
+Real-world results showed significant reductions in MTTD and MTTR, helping operations teams respond faster and produce long-term system improvement recommendations.
 
-#### Compute Evolution
+#### AI & HR in enterprises
 
-- **Shared Responsibility Model**: EC2 → ECS → Fargate → Lambda  
-- **Serverless benefits**: No server management, auto-scaling, pay-for-value  
-- **Functions vs Containers**: Criteria for appropriate choice  
+The Noventis session showed how Amazon Q can support HR workflows such as CV analysis, skill matching, job description creation, and candidate evaluation reports. AI can accelerate screening and standardize reporting, but strategic hiring decisions still require human judgment.
 
-#### Amazon Q Developer
+This also reminded candidates to write clear, structured CVs that align with job descriptions because AI screening is becoming increasingly common.
 
-- **SDLC automation**: From planning to maintenance  
-- **Code transformation**: Java upgrade, .NET modernization  
-- **AWS Transform agents**: VMware, Mainframe, .NET migration  
+#### Secure enterprise AI deployment with Amazon Q and MCP
+
+The final session discussed private AI agent deployment using AWS PrivateLink, VPC Interface Endpoints, Amazon Q, MCP servers, and AWS Cognito. The goal is to let AI access internal systems without exposing sensitive data to the public internet.
+
+This architecture helps enterprises keep traffic within AWS private networking, encrypt connections, and reduce security risk when deploying AI in production.
 
 ### Key Takeaways
 
-#### Design Mindset
+- Cloud and AI are rapidly changing how enterprises operate, from cloud operations to HR and voice interfaces.
+- Voice AI for Vietnamese requires specialized models for accents, tones, and conversational context.
+- DevOps AI Agents can significantly reduce detection and recovery time in complex service architectures.
+- AI in HR accelerates recruitment but does not fully replace human judgment.
+- Secure AI deployment in private VPC environments is essential for enterprises handling sensitive data.
+- Real project experience and deep focus on one or two core skills are more valuable than collecting many certificates.
 
-- **Business-first approach**: Always start from the business domain, not the technology  
-- **Ubiquitous language**: Importance of a shared vocabulary between business and tech teams  
-- **Bounded contexts**: Identifying and managing complexity in large systems  
+### Application to Work
 
-#### Technical Architecture
+Cloud Thinker's approach of using AI to shorten incident investigation time directly relates to the monitoring stack I am learning, such as CloudWatch and Grafana. The DevOps AI Agent model is also a useful framework for thinking about AI tools for cloud operations, beyond simple chatbots.
 
-- **Event storming technique**: Practical method for modeling business processes  
-- Use **event-driven communication** instead of synchronous calls  
-- **Integration patterns**: When to use sync, async, pub/sub, streaming  
-- **Compute spectrum**: Criteria for choosing between VM, containers, and serverless  
+The Voice AI pipeline helped me better understand how real-time voice products are built, which is different from the text-based LLM workflows I am more familiar with. The HR AI session also reminded me of the importance of writing a clear, structured CV aligned with job descriptions.
 
-#### Modernization Strategy
-
-- **Phased approach**: No rushing — follow a clear roadmap  
-- **7Rs framework**: Multiple modernization paths depending on the application  
-- **ROI measurement**: Cost reduction + business agility  
-
-### Applying to Work
-
-- **Apply DDD** to current projects: Event storming sessions with business teams  
-- **Refactor microservices**: Use bounded contexts to define service boundaries  
-- **Implement event-driven patterns**: Replace some sync calls with async messaging  
-- **Adopt serverless**: Pilot AWS Lambda for suitable use cases  
-- **Try Amazon Q Developer**: Integrate into the dev workflow to boost productivity  
+The secure VPC deployment architecture using PrivateLink, private DNS, and Cognito connects directly with the IAM and VPC networking knowledge I have learned during the internship program.
 
 ### Event Experience
 
-Attending the **“GenAI-powered App-DB Modernization”** workshop was extremely valuable, giving me a comprehensive view of modernizing applications and databases using advanced methods and tools. Key experiences included:
+This FC Community Day covered a wide range of topics: cloud career journeys, AI-powered cloud operations, Vietnamese Voice AI, DevOps incident automation, AI in HR, and secure AI deployment in enterprises.
 
-#### Learning from highly skilled speakers
-- Experts from AWS and major tech organizations shared **best practices** in modern application design.  
-- Through real-world case studies, I gained a deeper understanding of applying **DDD** and **Event-Driven Architecture** to large projects.  
+Some reflections from the event:
 
-#### Hands-on technical exposure
-- Participating in **event storming** sessions helped me visualize how to **model business processes** into domain events.  
-- Learned how to **split microservices** and define **bounded contexts** to manage large-system complexity.  
-- Understood trade-offs between **synchronous and asynchronous communication** and integration patterns like **pub/sub, point-to-point, streaming**.  
+- Steve Tran's journey was both inspiring and practical, showing how self-learning and project experience matter in cloud career development.
+- The Voice AI session showed how complex Vietnamese language processing can be, especially with regional accents and natural conversation context.
+- The DevOps AI Agent demo was the most concrete technical part of the event, making the idea of "AI for operations" feel practical.
+- The HR AI section reminded me that CVs need to be better structured because AI now plays a larger role in candidate screening.
 
-#### Leveraging modern tools
-- Explored **Amazon Q Developer**, an AI tool for SDLC support from planning to maintenance.  
-- Learned to **automate code transformation** and pilot serverless with **AWS Lambda** to improve productivity.  
+### Screenshots from the Event
 
-#### Networking and discussions
-- The workshop offered opportunities to exchange ideas with experts, peers, and business teams, enhancing the **ubiquitous language** between business and tech.  
-- Real-world examples reinforced the importance of the **business-first approach** rather than focusing solely on technology.  
+![FC Community Day AgenticOps for your Cloud screenshot](/images/4-EventParticipated/event2-fc-community-day.png)
 
-#### Lessons learned
-- Applying DDD and event-driven patterns reduces **coupling** while improving **scalability** and **resilience**.  
-- Modernization requires a **phased approach** with **ROI measurement**; rushing the process can be risky.  
-- AI tools like Amazon Q Developer can significantly **boost productivity** when integrated into the current workflow.  
-
-#### Some event photos
-*Add your event photos here*  
-
-> Overall, the event not only provided technical knowledge but also helped me reshape my thinking about application design, system modernization, and cross-team collaboration.
+Overall, FC Community Day gave me a broader view of how AI and cloud are developing in Vietnamese enterprises, from cloud infrastructure to voice, HR, and incident response. The event reinforced my belief that the cloud and AI skills I am building during this internship have real market demand.

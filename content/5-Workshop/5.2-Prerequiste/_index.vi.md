@@ -6,8 +6,15 @@ chapter : false
 pre : " <b> 5.2. </b> "
 ---
 
+#### Môi trường
+
++ **Region:** N. Virginia (`us-east-1`)
++ **Công cụ:** AWS Management Console, AWS CLI, Session Manager và trình duyệt web
++ **Dịch vụ chính:** S3, VPC, VPC Endpoint, EC2, Systems Manager, Transit Gateway, Site-to-Site VPN, Route 53 Resolver, IAM, CloudFormation và CloudWatch
+
 #### IAM permissions
-Gắn IAM permission policy sau vào tài khoản aws user của bạn để triển khai và dọn dẹp tài nguyên trong workshop này.
+
+Trong môi trường production, quyền IAM nên được giới hạn đúng tài nguyên mà project sử dụng. Với môi trường workshop, gắn policy tạm thời sau vào AWS user để triển khai và dọn dẹp, sau đó gỡ policy sau khi hoàn thành.
 ```
 {
     "Version": "2012-10-17",
@@ -218,7 +225,7 @@ Gắn IAM permission policy sau vào tài khoản aws user của bạn để tri
 
 #### Khởi tạo tài nguyên bằng CloudFormation
 
-Trong lab này, chúng ta sẽ dùng N.Virginia region (us-east-1).
+Project này sử dụng N. Virginia region (`us-east-1`).
 
 Để chuẩn bị cho môi trường làm workshop, chúng ta deploy CloudFormation template sau (click link): [PrivateLinkWorkshop ](https://us-east-1.console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/quickcreate?templateURL=https://s3.us-east-1.amazonaws.com/reinvent-endpoints-builders-session/Nested.yaml&stackName=PLCloudSetup). Để nguyên các lựa chọn mặc định.
 
@@ -240,3 +247,11 @@ Quá trình triển khai CloudFormation cần khoảng 15 phút để hoàn thà
 + 3 EC2s đã được tạo
 
 ![EC2](/images/5-Workshop/5.2-Prerequisite/ec2.png)
+
+#### Checklist kiểm tra trước khi thực hành
+
++ CloudFormation stacks ở trạng thái `CREATE_COMPLETE`.
++ Hai VPC, route table và subnet đã xuất hiện trong VPC console.
++ Các EC2 instance kiểm thử xuất hiện trong Systems Manager Fleet Manager hoặc Session Manager.
++ Có thể xem CloudWatch log group liên quan đến stack để xử lý lỗi.
++ S3 bucket dùng để kiểm thử không được public.

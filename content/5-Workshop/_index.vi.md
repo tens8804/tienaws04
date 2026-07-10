@@ -6,22 +6,26 @@ chapter: false
 pre: " <b> 5. </b> "
 ---
 
-{{% notice warning %}}
-⚠️ **Lưu ý:** Các thông tin dưới đây chỉ nhằm mục đích tham khảo, vui lòng **không sao chép nguyên văn** cho bài báo cáo của bạn kể cả warning này.
-{{% /notice %}}
-
-
-# Đảm bảo truy cập Hybrid an toàn đến S3 bằng cách sử dụng VPC endpoint
+# Đảm bảo truy cập hybrid an toàn đến S3 bằng VPC Endpoint
 
 #### Tổng quan
 
-**AWS PrivateLink** cung cấp kết nối riêng tư đến các dịch vụ aws từ VPCs hoặc trung tâm dữ liệu (on-premise) mà không làm lộ lưu lượng truy cập ra ngoài public internet.
+Dự án kỹ thuật cá nhân này thiết kế và kiểm thử mô hình truy cập Amazon S3 an toàn cho môi trường hybrid. Mục tiêu là cho phép workload trong AWS VPC và mạng on-premises mô phỏng truy cập S3 bằng đường truyền riêng tư, không đưa lưu lượng lưu trữ ra Internet công cộng.
 
-Trong bài lab này, chúng ta sẽ học cách tạo, cấu hình, và kiểm tra VPC endpoints để cho phép workload của bạn tiếp cận các dịch vụ AWS mà không cần đi qua Internet công cộng.
+Báo cáo được trình bày như một workshop end-to-end, có mô tả kiến trúc, các bước triển khai, kiểm thử, kiểm soát bảo mật, ghi chú chi phí và dọn dẹp tài nguyên. Project sử dụng hơn ba dịch vụ AWS, gồm Amazon S3, Amazon VPC, VPC Endpoint, Amazon EC2, AWS Systems Manager, AWS Transit Gateway, AWS Site-to-Site VPN, Route 53 Resolver, IAM, CloudFormation và CloudWatch.
 
-Chúng ta sẽ tạo hai loại endpoints để truy cập đến Amazon S3: gateway vpc endpoint và interface vpc endpoint. Hai loại vpc endpoints này mang đến nhiều lợi ích tùy thuộc vào việc bạn truy cập đến S3 từ môi trường cloud hay từ trung tâm dữ liệu (on-premise).
-+ **Gateway** - Tạo gateway endpoint để gửi lưu lượng đến Amazon S3 hoặc DynamoDB using private IP addresses. Bạn điều hướng lưu lượng từ VPC của bạn đến gateway endpoint bằng các bảng định tuyến (route tables)
-+ **Interface** - Tạo interface endpoint để gửi lưu lượng đến các dịch vụ điểm cuối (endpoints) sử dụng Network Load Balancer để phân phối lưu lượng. Lưu lượng dành cho dịch vụ điểm cuối được resolved bằng DNS.
+Hai mô hình truy cập S3 được triển khai và so sánh:
++ **Gateway endpoint** - Định tuyến lưu lượng S3 từ tài nguyên trong VPC thông qua route table riêng tư.
++ **Interface endpoint** - Mở rộng truy cập S3 riêng tư cho mạng on-premises mô phỏng thông qua PrivateLink và DNS resolution.
+
+#### Đối chiếu yêu cầu project
+
++ **Use-case AWS thực tế:** truy cập storage riêng tư cho workload hybrid.
++ **Kiến trúc:** hai VPC, S3 endpoint, VPN mô phỏng, DNS forwarding, endpoint policy và instance kiểm thử.
++ **Triển khai:** dùng CloudFormation để khởi tạo môi trường và có các bước xác minh thủ công.
++ **Kiểm thử và đo lường:** kiểm thử truy cập S3, kiểm tra DNS, phiên Systems Manager, trạng thái VPC endpoint, log/metric CloudWatch và kết quả mong đợi.
++ **Tối ưu:** IAM theo least privilege, giới hạn bằng endpoint policy, định tuyến riêng tư, kiểm soát chi phí và dọn dẹp tài nguyên.
++ **Đóng góp cá nhân:** bổ sung hardening endpoint policy, checklist kiểm thử và nhận xét hướng cải thiện production.
 
 #### Nội dung
 

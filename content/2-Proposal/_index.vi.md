@@ -1,108 +1,169 @@
 ---
-title: "Bản đề xuất"
-date: 2024-01-01
+title: "Đề xuất triển khai TechBlog trên AWS"
+date: 2026-07-09
 weight: 2
 chapter: false
 pre: " <b> 2. </b> "
 ---
-{{% notice warning %}}
-⚠️ **Lưu ý:** Các thông tin dưới đây chỉ nhằm mục đích tham khảo, vui lòng **không sao chép nguyên văn** cho bài báo cáo của bạn kể cả warning này.
-{{% /notice %}}
 
-Tại phần này, bạn cần tóm tắt các nội dung trong workshop mà bạn **dự tính** sẽ làm.
+## Tóm tắt đề xuất
 
-# IoT Weather Platform for Lab Research  
-## Giải pháp AWS Serverless hợp nhất cho giám sát thời tiết thời gian thực  
+TechBlog là ứng dụng web blog công nghệ được xây dựng bằng Java 17, Spring Boot 3.5, Spring MVC, Spring Security, Spring Data JPA/Hibernate, Thymeleaf, MySQL và Maven. Ứng dụng sử dụng kiến trúc monolithic MVC: giao diện render phía máy chủ và phần xử lý nghiệp vụ được đóng gói chung trong một ứng dụng Spring Boot.
 
-### 1. Tóm tắt điều hành  
-IoT Weather Platform được thiết kế dành cho nhóm *ITea Lab* tại TP. Hồ Chí Minh nhằm nâng cao khả năng thu thập và phân tích dữ liệu thời tiết. Nền tảng hỗ trợ tối đa 5 trạm thời tiết, có khả năng mở rộng lên 10–15 trạm, sử dụng thiết bị biên Raspberry Pi kết hợp cảm biến ESP32 để truyền dữ liệu qua MQTT. Nền tảng tận dụng các dịch vụ AWS Serverless để cung cấp giám sát thời gian thực, phân tích dự đoán và tiết kiệm chi phí, với quyền truy cập giới hạn cho 5 thành viên phòng lab thông qua Amazon Cognito.  
+Đề xuất chuyển môi trường local lên AWS theo mô hình thực tế nhưng tiết kiệm chi phí cho project nhóm TTV. Amazon CloudFront và AWS WAF là endpoint production/demo public, Amazon EC2 chạy file JAR, Amazon RDS for MySQL thay MySQL local và Amazon S3 thay hai thư mục `storage/avatars`, `storage/posts`. IAM Role cấp quyền tối thiểu cho EC2; AWS Secrets Manager hoặc Systems Manager Parameter Store bảo vệ thông tin đăng nhập database. Amazon CloudWatch, Amazon SNS và AWS Budgets cung cấp giám sát, cảnh báo vận hành và cảnh báo chi phí. Báo cáo workshop Hugo cũng có thể public bằng Amazon S3 và CloudFront như một static report website.
 
-### 2. Tuyên bố vấn đề  
-*Vấn đề hiện tại*  
-Các trạm thời tiết hiện tại yêu cầu thu thập dữ liệu thủ công, khó quản lý khi có nhiều trạm. Không có hệ thống tập trung cho dữ liệu hoặc phân tích thời gian thực, và các nền tảng bên thứ ba thường tốn kém và quá phức tạp.  
+Bản demo đầu không dùng NAT Gateway, Application Load Balancer, Auto Scaling hoặc RDS Multi-AZ vì chi phí và độ phức tạp chưa cần thiết.
 
-*Giải pháp*  
-Nền tảng sử dụng AWS IoT Core để tiếp nhận dữ liệu MQTT, AWS Lambda và API Gateway để xử lý, Amazon S3 để lưu trữ (bao gồm data lake), và AWS Glue Crawlers cùng các tác vụ ETL để trích xuất, chuyển đổi, tải dữ liệu từ S3 data lake sang một S3 bucket khác để phân tích. AWS Amplify với Next.js cung cấp giao diện web, và Amazon Cognito đảm bảo quyền truy cập an toàn. Tương tự như Thingsboard và CoreIoT, người dùng có thể đăng ký thiết bị mới và quản lý kết nối, nhưng nền tảng này hoạt động ở quy mô nhỏ hơn và phục vụ mục đích sử dụng nội bộ. Các tính năng chính bao gồm bảng điều khiển thời gian thực, phân tích xu hướng và chi phí vận hành thấp.  
+## Vấn đề cần giải quyết
 
-*Lợi ích và hoàn vốn đầu tư (ROI)*  
-Giải pháp tạo nền tảng cơ bản để các thành viên phòng lab phát triển một nền tảng IoT lớn hơn, đồng thời cung cấp nguồn dữ liệu cho những người nghiên cứu AI phục vụ huấn luyện mô hình hoặc phân tích. Nền tảng giảm bớt báo cáo thủ công cho từng trạm thông qua hệ thống tập trung, đơn giản hóa quản lý và bảo trì, đồng thời cải thiện độ tin cậy dữ liệu. Chi phí hàng tháng ước tính 0,66 USD (theo AWS Pricing Calculator), tổng cộng 7,92 USD cho 12 tháng. Tất cả thiết bị IoT đã được trang bị từ hệ thống trạm thời tiết hiện tại, không phát sinh chi phí phát triển thêm. Thời gian hoàn vốn 6–12 tháng nhờ tiết kiệm đáng kể thời gian thao tác thủ công.  
+Ứng dụng hiện chạy tại `http://localhost:8080`, kết nối MySQL/Laragon ở `localhost:3306/techblog` và lưu ảnh trên máy phát triển. Môi trường này có các hạn chế:
 
-### 3. Kiến trúc giải pháp  
-Nền tảng áp dụng kiến trúc AWS Serverless để quản lý dữ liệu từ 5 trạm dựa trên Raspberry Pi, có thể mở rộng lên 15 trạm. Dữ liệu được tiếp nhận qua AWS IoT Core, lưu trữ trong S3 data lake và xử lý bởi AWS Glue Crawlers và ETL jobs để chuyển đổi và tải vào một S3 bucket khác cho mục đích phân tích. Lambda và API Gateway xử lý bổ sung, trong khi Amplify với Next.js cung cấp bảng điều khiển được bảo mật bởi Cognito.  
+- Người dùng bên ngoài không thể truy cập ổn định.
+- Ảnh phụ thuộc vào một ổ đĩa và có thể mất khi thay máy chủ.
+- Dữ liệu nghiệp vụ phụ thuộc vào MySQL local.
+- DB credential có thể bị lộ nếu ghi trực tiếp trong file cấu hình.
+- Chưa có log tập trung, metric, cảnh báo lỗi và cảnh báo chi phí.
+- Các chức năng login, register, comment và upload cần lớp bảo vệ khi public.
 
-![IoT Weather Station Architecture](/images/2-Proposal/edge_architecture.jpeg)
+Giải pháp phải khắc phục các vấn đề trên nhưng vẫn giữ nguyên kiến trúc Spring MVC, không chuyển TechBlog thành React SPA hoặc tách hệ thống không cần thiết.
 
-![IoT Weather Platform Architecture](/images/2-Proposal/platform_architecture.jpeg)
+## Tổng quan giải pháp
 
-*Dịch vụ AWS sử dụng*  
-- *AWS IoT Core*: Tiếp nhận dữ liệu MQTT từ 5 trạm, mở rộng lên 15.  
-- *AWS Lambda*: Xử lý dữ liệu và kích hoạt Glue jobs (2 hàm).  
-- *Amazon API Gateway*: Giao tiếp với ứng dụng web.  
-- *Amazon S3*: Lưu trữ dữ liệu thô (data lake) và dữ liệu đã xử lý (2 bucket).  
-- *AWS Glue*: Crawlers lập chỉ mục dữ liệu, ETL jobs chuyển đổi và tải dữ liệu.  
-- *AWS Amplify*: Lưu trữ giao diện web Next.js.  
-- *Amazon Cognito*: Quản lý quyền truy cập cho người dùng phòng lab.  
+TechBlog phục vụ ba vai trò:
 
-*Thiết kế thành phần*  
-- *Thiết bị biên*: Raspberry Pi thu thập và lọc dữ liệu cảm biến, gửi tới IoT Core.  
-- *Tiếp nhận dữ liệu*: AWS IoT Core nhận tin nhắn MQTT từ thiết bị biên.  
-- *Lưu trữ dữ liệu*: Dữ liệu thô lưu trong S3 data lake; dữ liệu đã xử lý lưu ở một S3 bucket khác.  
-- *Xử lý dữ liệu*: AWS Glue Crawlers lập chỉ mục dữ liệu; ETL jobs chuyển đổi để phân tích.  
-- *Giao diện web*: AWS Amplify lưu trữ ứng dụng Next.js cho bảng điều khiển và phân tích thời gian thực.  
-- *Quản lý người dùng*: Amazon Cognito giới hạn 5 tài khoản hoạt động.  
+- **Reader / USER:** đăng ký, đăng nhập, đọc bài, like, save, comment, reply, report comment, sửa profile, upload avatar và gửi yêu cầu nâng cấp Writer.
+- **Writer / EDITOR:** có toàn bộ quyền Reader, đồng thời tạo, sửa và xóa bài của mình. Bài viết đi qua `PENDING`, `APPROVED` và `REJECTED`.
+- **Admin / ADMIN:** quản lý user, category, comment, report; duyệt hoặc từ chối writer request; duyệt hoặc từ chối bài viết.
 
-### 4. Triển khai kỹ thuật  
-*Các giai đoạn triển khai*  
-Dự án gồm 2 phần — thiết lập trạm thời tiết biên và xây dựng nền tảng thời tiết — mỗi phần trải qua 4 giai đoạn:  
-1. *Nghiên cứu và vẽ kiến trúc*: Nghiên cứu Raspberry Pi với cảm biến ESP32 và thiết kế kiến trúc AWS Serverless (1 tháng trước kỳ thực tập).  
-2. *Tính toán chi phí và kiểm tra tính khả thi*: Sử dụng AWS Pricing Calculator để ước tính và điều chỉnh (Tháng 1).  
-3. *Điều chỉnh kiến trúc để tối ưu chi phí/giải pháp*: Tinh chỉnh (ví dụ tối ưu Lambda với Next.js) để đảm bảo hiệu quả (Tháng 2).  
-4. *Phát triển, kiểm thử, triển khai*: Lập trình Raspberry Pi, AWS services với CDK/SDK và ứng dụng Next.js, sau đó kiểm thử và đưa vào vận hành (Tháng 2–3).  
+EC2 tiếp nhận request, thực thi Spring Security, xử lý nghiệp vụ và render Thymeleaf. RDS lưu dữ liệu nghiệp vụ; S3 lưu avatar và ảnh bài viết; CloudWatch/SNS theo dõi vận hành; Budgets cảnh báo chi phí.
 
-*Yêu cầu kỹ thuật*  
-- *Trạm thời tiết biên*: Cảm biến (nhiệt độ, độ ẩm, lượng mưa, tốc độ gió), vi điều khiển ESP32, Raspberry Pi làm thiết bị biên. Raspberry Pi chạy Raspbian, sử dụng Docker để lọc dữ liệu và gửi 1 MB/ngày/trạm qua MQTT qua Wi-Fi.  
-- *Nền tảng thời tiết*: Kiến thức thực tế về AWS Amplify (lưu trữ Next.js), Lambda (giảm thiểu do Next.js xử lý), AWS Glue (ETL), S3 (2 bucket), IoT Core (gateway và rules), và Cognito (5 người dùng). Sử dụng AWS CDK/SDK để lập trình (ví dụ IoT Core rules tới S3). Next.js giúp giảm tải Lambda cho ứng dụng web fullstack.  
+## Kiến trúc giải pháp
 
-### 5. Lộ trình & Mốc triển khai  
-- *Trước thực tập (Tháng 0)*: 1 tháng lên kế hoạch và đánh giá trạm cũ.  
-- *Thực tập (Tháng 1–3)*:  
-    - Tháng 1: Học AWS và nâng cấp phần cứng.  
-    - Tháng 2: Thiết kế và điều chỉnh kiến trúc.  
-    - Tháng 3: Triển khai, kiểm thử, đưa vào sử dụng.  
-- *Sau triển khai*: Nghiên cứu thêm trong vòng 1 năm.  
+```mermaid
+flowchart LR
+    U[Reader / Writer / Admin] -->|HTTPS| F[CloudFront và AWS WAF]
+    F -->|Forward request| E[Amazon EC2<br/>Spring Boot MVC]
+    E -->|JDBC 3306| R[(Amazon RDS for MySQL<br/>techblog)]
+    E -->|AWS SDK qua IAM Role| S[(Amazon S3<br/>avatars/ và posts/)]
+    P[Secrets Manager hoặc<br/>SSM Parameter Store] -->|DB credential| E
+    E -->|Log và metric| C[Amazon CloudWatch]
+    C --> A[CloudWatch Alarm]
+    A --> N[Amazon SNS<br/>Email cảnh báo]
+    B[AWS Budgets] -->|Cảnh báo chi phí| N
+    H[Báo cáo Hugo workshop] -->|Static website| RS[(S3 report bucket)]
+    RS --> RC[CloudFront report distribution]
+```
 
-### 6. Ước tính ngân sách  
-Có thể xem chi phí trên [AWS Pricing Calculator](https://calculator.aws/#/estimate?id=621f38b12a1ef026842ba2ddfe46ff936ed4ab01)  
-Hoặc tải [tệp ước tính ngân sách](../attachments/budget_estimation.pdf).  
+Luồng production/demo mong muốn cho TechBlog là **User → CloudFront + AWS WAF → EC2 Spring Boot → RDS MySQL + S3**. Khi kiểm tra kết nối ban đầu, nhóm có thể tạm truy cập public IP của EC2 qua cổng 8080 trước khi đặt CloudFront và WAF phía trước ứng dụng. Security Group của RDS chỉ nhận cổng MySQL 3306 từ Security Group của EC2. S3 bucket lưu upload của ứng dụng giữ Block Public Access mặc định, trừ khi nhóm có thiết kế phân phối object riêng. DB credential không nằm trong repository.
 
-*Chi phí hạ tầng*  
-- AWS Lambda: 0,00 USD/tháng (1.000 request, 512 MB lưu trữ).  
-- S3 Standard: 0,15 USD/tháng (6 GB, 2.100 request, 1 GB quét).  
-- Truyền dữ liệu: 0,02 USD/tháng (1 GB vào, 1 GB ra).  
-- AWS Amplify: 0,35 USD/tháng (256 MB, request 500 ms).  
-- Amazon API Gateway: 0,01 USD/tháng (2.000 request).  
-- AWS Glue ETL Jobs: 0,02 USD/tháng (2 DPU).  
-- AWS Glue Crawlers: 0,07 USD/tháng (1 crawler).  
-- MQTT (IoT Core): 0,08 USD/tháng (5 thiết bị, 45.000 tin nhắn).  
+Báo cáo workshop là một Hugo static site riêng. GitHub có thể dùng để lưu source code ứng dụng và nội dung report, nhưng GitHub Pages không phải hướng public deployment chính trong đề xuất này. Website báo cáo cuối cùng có thể deploy bằng **S3 + CloudFront** để thống nhất với kiến trúc AWS của workshop.
 
-*Tổng*: 0,7 USD/tháng, 8,40 USD/12 tháng  
-- *Phần cứng*: 265 USD một lần (Raspberry Pi 5 và cảm biến).  
+## Dịch vụ AWS sử dụng
 
-### 7. Đánh giá rủi ro  
-*Ma trận rủi ro*  
-- Mất mạng: Ảnh hưởng trung bình, xác suất trung bình.  
-- Hỏng cảm biến: Ảnh hưởng cao, xác suất thấp.  
-- Vượt ngân sách: Ảnh hưởng trung bình, xác suất thấp.  
+| Dịch vụ | Mục đích và lý do chọn |
+|---|---|
+| AWS Budgets | Cảnh báo sớm chi phí trước và trong workshop |
+| Amazon EC2 | Phù hợp ứng dụng Spring MVC monolithic và cho phép kiểm soát tiến trình Java 17 |
+| Amazon RDS for MySQL | Thay MySQL local, hỗ trợ backup và vận hành database |
+| Amazon S3 | Lưu avatar, ảnh bài viết độc lập với vòng đời EC2 |
+| AWS IAM Role | Cấp temporary credential và quyền tối thiểu, không cần Access Key tĩnh |
+| Secrets Manager hoặc SSM Parameter Store | Lưu DB credential ngoài source code |
+| Amazon CloudWatch | Tập trung log, metric và alarm |
+| Amazon SNS | Gửi cảnh báo CloudWatch và chi phí qua email |
+| CloudFront và AWS WAF | Lớp public production/demo cho TechBlog sau khi ứng dụng EC2 đã kiểm tra kết nối trực tiếp ổn định |
 
-*Chiến lược giảm thiểu*  
-- Mạng: Lưu trữ cục bộ trên Raspberry Pi với Docker.  
-- Cảm biến: Kiểm tra định kỳ, dự phòng linh kiện.  
-- Chi phí: Cảnh báo ngân sách AWS, tối ưu dịch vụ.  
+Báo cáo workshop Hugo có thể publish riêng bằng Amazon S3 và CloudFront như một static website. GitHub vẫn hữu ích cho quản lý phiên bản, nhưng không phải hướng hosting public chính cho demo/report trong đề xuất này.
 
-*Kế hoạch dự phòng*  
-- Quay lại thu thập thủ công nếu AWS gặp sự cố.  
-- Sử dụng CloudFormation để khôi phục cấu hình liên quan đến chi phí.  
+Amplify Hosting không phải nền tảng chính vì TechBlog không có SPA frontend tách riêng. API Gateway không phải luồng request chính vì Spring MVC xử lý và render trang. Elastic Beanstalk cũng không cần cho workshop ưu tiên EC2.
 
-### 8. Kết quả kỳ vọng  
-*Cải tiến kỹ thuật*: Dữ liệu và phân tích thời gian thực thay thế quy trình thủ công. Có thể mở rộng tới 10–15 trạm.  
-*Giá trị dài hạn*: Nền tảng dữ liệu 1 năm cho nghiên cứu AI, có thể tái sử dụng cho các dự án tương lai.
+## Kế hoạch triển khai kỹ thuật
+
+1. Kiểm tra build local và toàn bộ luồng Reader, Writer, Admin.
+2. Tách cấu hình database và S3 thành biến môi trường.
+3. Tạo Zero Spend Budget và Monthly Cost Budget trước hạ tầng.
+4. Tạo S3 bucket mã hóa với prefix `avatars/`, `posts/`.
+5. Tạo EC2 IAM Role, chỉ cho phép truy cập bucket TechBlog, CloudWatch và secret đã chọn.
+6. Tạo RDS MySQL nhỏ, Single-AZ và database `techblog`.
+7. Chỉ cho phép Security Group EC2 truy cập RDS qua cổng 3306.
+8. Build bằng Maven Wrapper, upload JAR lên EC2 nhỏ có Java 17.
+9. Chạy ứng dụng với `DB_URL`, `DB_USERNAME`, `DB_PASSWORD`, `AWS_REGION`, `S3_BUCKET`.
+10. Kiểm thử nghiệp vụ, xác nhận dữ liệu trong RDS và object trong S3.
+11. Cấu hình CloudWatch Logs, alarm và SNS email.
+12. Lưu bằng chứng và cleanup tài nguyên không cần thiết.
+
+Hibernate `ddl-auto=update` phù hợp bản demo. Môi trường lâu dài nên dùng Flyway hoặc Liquibase để quản lý migration theo phiên bản.
+
+## Phạm vi nhóm
+
+TechBlog được phát triển và triển khai như project kỹ thuật dùng chung của nhóm TTV. Các phần **2-Proposal**, **3-BlogsPosted** và **5-Workshop** là deliverable dùng chung của nhóm, cần thống nhất về kiến trúc TechBlog, quyết định AWS và quy trình triển khai.
+
+Trang đầu, **1-Worklog**, **4-EventParticipated**, **6-Self-evaluation** và **7-Feedback** vẫn là phần cá nhân của từng sinh viên. Các phần này có thể phản ánh hoạt động, kết quả học tập, sự kiện đã tham gia và feedback riêng của từng thành viên.
+
+Môi trường AWS được quản lý như một môi trường triển khai chung để kiểm soát chi phí và tránh tạo tài nguyên trùng lặp. Nhóm không dùng chung root AWS account. Nếu nhiều thành viên cần truy cập, nhóm sẽ tạo IAM user hoặc IAM role riêng theo nguyên tắc least privilege.
+
+## Phân công nhóm
+
+Bản demo TechBlog sử dụng một AWS account chính để triển khai. Cách làm này giúp nhóm quản lý tài nguyên tập trung, theo dõi AWS Budgets dễ hơn và tránh phát sinh chi phí rải rác trên nhiều tài khoản cá nhân. Nhóm không cần tạo bốn AWS account riêng cho workshop demo.
+
+Nhóm không dùng chung root credentials. Root account chỉ nên dùng cho billing, account recovery hoặc các thao tác cấp tài khoản khi thật sự cần. Nếu thành viên cần thao tác trực tiếp trên AWS, nhóm sẽ tạo IAM user hoặc role riêng theo nguyên tắc least privilege.
+
+Trong bản demo, một thành viên phụ trách triển khai AWS chính. Các thành viên còn lại tập trung vào nghiệp vụ ứng dụng, kiểm thử, tài liệu, monitoring và security review. EC2 nên truy cập S3 và dịch vụ giám sát thông qua IAM Role. Cách này an toàn hơn so với lưu Access Key tĩnh trong source code hoặc file cấu hình của TechBlog.
+
+| Vai trò | Trách nhiệm |
+|---|---|
+| Member 1 - AWS Deployment Lead | Tạo AWS Budgets, S3, RDS, EC2, cấu hình biến môi trường và chạy TechBlog trên AWS. |
+| Member 2 - Application & Database | Kiểm thử local, cấu hình database, kiểm tra luồng Reader, Writer, Admin và xác nhận dữ liệu trong RDS. |
+| Member 3 - Storage & Security | Kiểm tra upload image flow, S3 bucket, IAM Role, Secrets Manager hoặc SSM Parameter Store và đề xuất WAF rule. |
+| Member 4 - Monitoring & Documentation | Cấu hình CloudWatch, SNS, checklist dọn dẹp tài nguyên, workflow diagram và nội dung workshop report. |
+
+AWS Budgets là lớp kiểm soát chi phí chung cho toàn bộ nhóm. Dịch vụ này giúp phát hiện chi phí bất thường sớm trong khi vẫn giữ kiến trúc demo đơn giản và tập trung.
+
+## Lộ trình và mốc triển khai
+
+| Thời gian | Công việc | Mốc hoàn thành |
+|---|---|---|
+| Tuần 1 | Kiểm tra local, tách cấu hình, tạo Budgets | JAR sẵn sàng và có cảnh báo chi phí |
+| Tuần 2 | Tạo S3, IAM Role, RDS và Security Group | Hạ tầng dữ liệu sẵn sàng |
+| Tuần 3 | Tích hợp S3/RDS và deploy EC2 | TechBlog truy cập được trên AWS |
+| Tuần 4 | Kiểm thử vai trò, monitoring, bảo mật và cleanup | Hoàn tất demo và bằng chứng |
+| Giai đoạn sau | HTTPS, domain, CloudFront/WAF, migration | Kiến trúc gần production hơn |
+
+## Ước tính ngân sách và tối ưu chi phí
+
+Chi phí chính xác phụ thuộc Region, loại instance, số giờ chạy, storage, data transfer và điều kiện Free Tier tại thời điểm triển khai. Cần nhập cấu hình cuối vào AWS Pricing Calculator trước khi tạo tài nguyên.
+
+- Chọn EC2 nhỏ nhưng đủ RAM cho JVM và stop khi không sử dụng.
+- Dùng RDS dev/test nhỏ, Single-AZ và storage giới hạn.
+- Không dùng NAT Gateway, ALB, Auto Scaling hoặc Multi-AZ ở bản demo đầu.
+- Dùng một bucket với prefix thay vì tạo nhiều bucket không cần thiết.
+- Đặt retention CloudWatch Logs ngắn và phù hợp.
+- Tạo Budget alert theo nhiều ngưỡng actual/forecast.
+- Gắn tag `Project=TechBlog`.
+- Xóa instance, snapshot, object, log, alarm và tài nguyên edge sau workshop.
+
+## Đánh giá rủi ro
+
+| Rủi ro | Ảnh hưởng | Biện pháp |
+|---|---|---|
+| EC2 đơn lẻ gặp sự cố | Website tạm dừng | Lưu state trong RDS/S3 và ghi quy trình dựng lại |
+| RDS Single-AZ gián đoạn | Database không khả dụng | Dùng backup cho demo; cân nhắc Multi-AZ về sau |
+| Quyền bucket hoặc network quá rộng | Rò rỉ dữ liệu | Block Public Access, IAM giới hạn resource và tham chiếu Security Group |
+| Credential bị commit hoặc ghi log | Database bị xâm nhập | Dùng Secrets Manager/SSM, ẩn secret trong log và rotate khi cần |
+| Upload độc hại hoặc quá lớn | Tăng storage hoặc mất an toàn | Kiểm tra MIME, extension, kích thước và tên object ngẫu nhiên |
+| Tự động spam login/comment | Tăng tải và nội dung rác | Spring Security và WAF rate-based rule ở giai đoạn sau |
+| Chi phí ngoài dự kiến | Vượt ngân sách nhóm TTV | Budgets, tag, kiểm tra Billing thường xuyên và checklist cleanup |
+| Schema thay đổi ngoài kiểm soát | Dữ liệu không nhất quán | Backup và chuyển từ `ddl-auto=update` sang migration |
+
+## Kết quả kỳ vọng
+
+- TechBlog truy cập được qua public endpoint của EC2.
+- Luồng Reader, Writer, Admin, writer request và duyệt bài hoạt động đúng.
+- User, post, category, comment, report, like và save được lưu trong RDS.
+- Avatar và ảnh bài viết nằm trong S3, không phụ thuộc disk EC2.
+- EC2 truy cập AWS bằng IAM Role, không có static key trong source.
+- CloudWatch thu thập dữ liệu vận hành và SNS gửi được cảnh báo thử nghiệm.
+- Chi phí nằm trong Budget và mọi tài nguyên demo có thể cleanup.
+
+## Hướng phát triển tương lai
+
+Sau khi bản EC2 ổn định, có thể bổ sung domain, HTTPS, CloudFront và AWS WAF. Khi lưu lượng tăng, có thể cân nhắc ALB, private subnet cho ứng dụng, Auto Scaling và RDS Multi-AZ. Các cải tiến khác gồm CI/CD, Flyway hoặc Liquibase, kiểm thử phục hồi backup, S3 lifecycle và quy trình disaster recovery. Chỉ nên bổ sung khi lợi ích vận hành tương xứng với chi phí.
