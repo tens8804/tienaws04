@@ -126,7 +126,8 @@ AWS Budgets là lớp kiểm soát chi phí chung cho toàn bộ nhóm. Dịch v
 | Tuần 2 | Tạo S3, IAM Role, RDS và Security Group | Hạ tầng dữ liệu sẵn sàng |
 | Tuần 3 | Tích hợp S3/RDS và deploy EC2 | TechBlog truy cập được trên AWS |
 | Tuần 4 | Kiểm thử vai trò, monitoring, bảo mật và cleanup | Hoàn tất demo và bằng chứng |
-| Giai đoạn sau | HTTPS, domain, CloudFront/WAF, migration | Kiến trúc gần production hơn |
+| Tuần 4 | CloudFront/WAF, kiểm thử vai trò, monitoring, bảo mật và cleanup | Hoàn tất endpoint public, demo và bằng chứng |
+| Giai đoạn sau | Custom domain, ALB, Auto Scaling, Multi-AZ và migration | Kiến trúc production có khả năng mở rộng cao hơn |
 
 ## Ước tính ngân sách và tối ưu chi phí
 
@@ -150,13 +151,13 @@ Chi phí chính xác phụ thuộc Region, loại instance, số giờ chạy, s
 | Quyền bucket hoặc network quá rộng | Rò rỉ dữ liệu | Block Public Access, IAM giới hạn resource và tham chiếu Security Group |
 | Credential bị commit hoặc ghi log | Database bị xâm nhập | Dùng Secrets Manager/SSM, ẩn secret trong log và rotate khi cần |
 | Upload độc hại hoặc quá lớn | Tăng storage hoặc mất an toàn | Kiểm tra MIME, extension, kích thước và tên object ngẫu nhiên |
-| Tự động spam login/comment | Tăng tải và nội dung rác | Spring Security và WAF rate-based rule ở giai đoạn sau |
+| Tự động spam login/comment | Tăng tải và nội dung rác | Spring Security và WAF rate-based rule trong bước bảo vệ endpoint public |
 | Chi phí ngoài dự kiến | Vượt ngân sách nhóm TTV | Budgets, tag, kiểm tra Billing thường xuyên và checklist cleanup |
 | Schema thay đổi ngoài kiểm soát | Dữ liệu không nhất quán | Backup và chuyển từ `ddl-auto=update` sang migration |
 
 ## Kết quả kỳ vọng
 
-- TechBlog truy cập được qua public endpoint của EC2.
+- TechBlog được kiểm tra ban đầu qua public endpoint của EC2 và truy cập chính thức qua endpoint CloudFront có AWS WAF bảo vệ.
 - Luồng Reader, Writer, Admin, writer request và duyệt bài hoạt động đúng.
 - User, post, category, comment, report, like và save được lưu trong RDS.
 - Avatar và ảnh bài viết nằm trong S3, không phụ thuộc disk EC2.
@@ -166,4 +167,4 @@ Chi phí chính xác phụ thuộc Region, loại instance, số giờ chạy, s
 
 ## Hướng phát triển tương lai
 
-Sau khi bản EC2 ổn định, có thể bổ sung domain, HTTPS, CloudFront và AWS WAF. Khi lưu lượng tăng, có thể cân nhắc ALB, private subnet cho ứng dụng, Auto Scaling và RDS Multi-AZ. Các cải tiến khác gồm CI/CD, Flyway hoặc Liquibase, kiểm thử phục hồi backup, S3 lifecycle và quy trình disaster recovery. Chỉ nên bổ sung khi lợi ích vận hành tương xứng với chi phí.
+Sau khi bản demo CloudFront/WAF ổn định, có thể bổ sung custom domain và chứng chỉ ACM. Khi lưu lượng tăng, có thể cân nhắc ALB, private subnet cho ứng dụng, Auto Scaling và RDS Multi-AZ. Các cải tiến khác gồm CI/CD, Flyway hoặc Liquibase, kiểm thử phục hồi backup, S3 lifecycle và quy trình disaster recovery. Chỉ nên bổ sung khi lợi ích vận hành tương xứng với chi phí.
