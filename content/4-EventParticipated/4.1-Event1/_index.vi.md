@@ -97,6 +97,6 @@ Một vài điều mình suy nghĩ:
 
 ### Một số ảnh chụp màn hình khi tham gia sự kiện
 
-![AWS & Swinburne Vietnam Cloud Computing Study Tour - livestream screenshot](/images/4-EventParticipated/event1-cloud-study-tour.png)
+{{< content-image src="images/4-EventParticipated/event1-cloud-study-tour.png" alt="AWS & Swinburne Vietnam Cloud Computing Study Tour - livestream screenshot" >}}
 
 Tổng thể, sự kiện này mang đến góc nhìn toàn diện, thành thật và có tính ứng dụng cao về những gì cần thiết để xây dựng sự nghiệp cloud tại Việt Nam, kết hợp dữ liệu thị trường, thực tế kỹ thuật, phát triển kỹ năng mềm và chiến lược nghề nghiệp.

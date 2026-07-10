@@ -98,6 +98,6 @@ Một số điều mình rút ra:
 
 ### Một số hình ảnh / ảnh chụp màn hình khi tham gia sự kiện
 
-![FC Community Day - AgenticOps for your Cloud screenshot](/images/4-EventParticipated/event2-fc-community-day.png)
+{{< content-image src="images/4-EventParticipated/event2-fc-community-day.png" alt="FC Community Day - AgenticOps for your Cloud screenshot" >}}
 
 Tổng thể, FC Community Day giúp mình có cái nhìn rộng hơn về hướng đi của AI và cloud trong các doanh nghiệp Việt Nam, từ hạ tầng cloud đến voice, HR và phản ứng sự cố. Sự kiện củng cố niềm tin rằng các kỹ năng cloud và AI mình đang xây dựng trong kỳ thực tập này thực sự có nhu cầu thực tế.

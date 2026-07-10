@@ -12,7 +12,7 @@ Hello AWS Study Group VN!
 
 In this post, I would like to share an interesting solution from my exploration of Generative AI applications on AWS: building an AI assistant that helps users prepare before meetings and automatically summarize follow-up information after meetings by combining Amazon Q with Cisco Webex MCP Servers.
 
-![Amazon Q and Cisco Webex MCP Servers meeting prep and follow-up assistant architecture](/images/3-BlogsPosted/ML-21199-1.png)
+{{< content-image src="images/3-BlogsPosted/ML-21199-1.png" alt="Amazon Q and Cisco Webex MCP Servers meeting prep and follow-up assistant architecture" >}}
 
 In modern enterprise environments, employees often attend many meetings every day. Reviewing previous meeting information, collecting context, and tracking unfinished action items can take a lot of time. After each meeting, users also need to write notes, summarize important decisions, and send follow-up emails or messages to relevant members. As the number of meetings increases, managing information becomes more difficult and important tasks can easily be missed.
 

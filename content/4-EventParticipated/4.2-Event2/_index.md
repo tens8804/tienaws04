@@ -98,6 +98,6 @@ Some reflections from the event:
 
 ### Screenshots from the Event
 
-![FC Community Day AgenticOps for your Cloud screenshot](/images/4-EventParticipated/event2-fc-community-day.png)
+{{< content-image src="images/4-EventParticipated/event2-fc-community-day.png" alt="FC Community Day AgenticOps for your Cloud screenshot" >}}
 
 Overall, FC Community Day gave me a broader view of how AI and cloud are developing in Vietnamese enterprises, from cloud infrastructure to voice, HR, and incident response. The event reinforced my belief that the cloud and AI skills I am building during this internship have real market demand.

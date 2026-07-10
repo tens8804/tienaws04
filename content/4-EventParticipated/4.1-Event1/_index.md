@@ -97,6 +97,6 @@ Some reflections from the event:
 
 ### Screenshots from the Event
 
-![AWS & Swinburne Vietnam Cloud Computing Study Tour livestream screenshot](/images/4-EventParticipated/event1-cloud-study-tour.png)
+{{< content-image src="images/4-EventParticipated/event1-cloud-study-tour.png" alt="AWS & Swinburne Vietnam Cloud Computing Study Tour livestream screenshot" >}}
 
 Overall, this event provided a comprehensive, honest, and practical perspective on what it takes to build a cloud career in Vietnam, combining market data, engineering reality, soft-skill development, and career strategy.

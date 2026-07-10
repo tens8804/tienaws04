@@ -12,7 +12,7 @@ Xin chào các bạn và anh chị AWS Study Group VN!
 
 Hôm nay mình xin chia sẻ một bài viết khá thú vị vừa được đăng trên AWS Industries Blog về cách xây dựng hệ thống Multi-Agent dành cho lĩnh vực tài chính bằng cách kết hợp Amazon EKS và Amazon Bedrock AgentCore.
 
-![Amazon Bedrock AgentCore - kiến trúc Multi-Agent cho lĩnh vực tài chính trên Amazon EKS](/images/3-BlogsPosted/725904867_3853524508288501_6898272658705177036_n.jpg)
+{{< content-image src="images/3-BlogsPosted/725904867_3853524508288501_6898272658705177036_n.jpg" alt="Amazon Bedrock AgentCore - kiến trúc Multi-Agent cho lĩnh vực tài chính trên Amazon EKS" >}}
 
 Trong các tổ chức tài chính, một yêu cầu từ khách hàng hiếm khi chỉ cần một chuyên gia xử lý. Chẳng hạn, khi một khách hàng muốn đánh giá danh mục đầu tư, hệ thống có thể cần kết hợp nhiều chuyên môn khác nhau như phân tích thị trường, đánh giá rủi ro, tư vấn đầu tư và truy xuất dữ liệu tài chính. Nếu tất cả công việc đều do một AI Agent đảm nhiệm thì khả năng xử lý sẽ bị giới hạn và chất lượng câu trả lời cũng khó đạt được độ chính xác cao.
 

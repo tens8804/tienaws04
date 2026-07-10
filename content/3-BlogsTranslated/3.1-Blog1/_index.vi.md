@@ -12,7 +12,7 @@ Xin chào các bạn và anh chị AWS Study Group VN!
 
 Hôm nay mình xin chia sẻ một giải pháp khá thú vị trong quá trình tìm hiểu các ứng dụng Generative AI trên AWS: xây dựng trợ lý AI hỗ trợ chuẩn bị trước cuộc họp và tự động tổng kết sau cuộc họp bằng cách kết hợp Amazon Q với Cisco Webex MCP Servers.
 
-![Amazon Q và Cisco Webex MCP Servers - kiến trúc trợ lý chuẩn bị và tổng kết cuộc họp](/images/3-BlogsPosted/ML-21199-1.png)
+{{< content-image src="images/3-BlogsPosted/ML-21199-1.png" alt="Amazon Q và Cisco Webex MCP Servers - kiến trúc trợ lý chuẩn bị và tổng kết cuộc họp" >}}
 
 Trong môi trường doanh nghiệp hiện nay, nhân viên thường phải tham gia nhiều cuộc họp mỗi ngày. Việc xem lại thông tin, nội dung từ các cuộc họp trước, tổng hợp những đầu việc còn tồn đọng thường tốn khá nhiều thời gian. Bên cạnh đó, sau mỗi cuộc họp, người dùng còn phải ghi chú, tổng hợp các quyết định quan trọng, gửi email hoặc tin nhắn cho các thành viên liên quan. Khi số lượng cuộc họp ngày càng tăng, việc quản lý thông tin trở nên khó khăn và rất dễ bỏ sót các nhiệm vụ quan trọng.
 

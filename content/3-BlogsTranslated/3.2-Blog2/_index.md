@@ -10,7 +10,7 @@ pre: " <b> 3.2. </b> "
 
 When people think about remote access to internal systems, VPN is usually the first solution that comes to mind. However, as cyberattacks become more sophisticated and hybrid work becomes more common, VPNs reveal many limitations in access control.
 
-![AWS Verified Access and AWS Network Firewall Zero Trust architecture replacing traditional VPN](/images/3-BlogsPosted/726261910_2233973207438101_1157835197418497774_n.jpg)
+{{< content-image src="images/3-BlogsPosted/726261910_2233973207438101_1157835197418497774_n.jpg" alt="AWS Verified Access and AWS Network Firewall Zero Trust architecture replacing traditional VPN" >}}
 
 In a recent AWS Networking & Content Delivery Blog post, AWS experts introduced how to combine AWS Verified Access and AWS Network Firewall to build a Zero Trust architecture based on the principle "Never Trust, Always Verify". After reading the post, I found the solution practical and worth sharing.
 
