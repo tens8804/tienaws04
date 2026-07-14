@@ -21,5 +21,5 @@ pre: " <b> 1.3. </b> "
 
 ### Kết quả đạt được tuần 3:
 
-* Hiểu luồng kết nối cơ bản giữa EC2, S3 và VPC, chuẩn bị tốt cho workshop VPC Endpoint.
+* Hiểu nền tảng EC2, S3 và networking, làm cơ sở thiết kế môi trường triển khai TechBlog.
 * Cập nhật minh chứng, ghi chú kỹ thuật và nội dung liên quan vào báo cáo thực tập.

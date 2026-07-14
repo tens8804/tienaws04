@@ -6,20 +6,20 @@ chapter: false
 pre: " <b> 1.8. </b> "
 ---
 
-### Week 8 Objectives: Implementing S3 Gateway VPC Endpoint
+### Week 8 Objectives: Configuring Budgets, S3, IAM Role, and SES
 
-* Set up private S3 access from workloads inside the cloud VPC.
+* Establish cost controls, object storage, application permissions, and the email identity.
 * Timeline: from 08/06/2026 to 12/06/2026.
 
 ### Tasks to be carried out this week:
 | Day | Task | Start Date | Completion Date | Reference Material |
 | --- | ---- | ---------- | --------------- | ------------------ |
-| Mon | - Created a test S3 bucket and ensured it was not public | 08/06/2026 | 12/06/2026 | <https://cloudjourney.awsstudygroup.com/> |
-| Tue | - Created an S3 Gateway VPC Endpoint and associated it with the correct route table | 08/06/2026 | 12/06/2026 | <https://cloudjourney.awsstudygroup.com/> |
-| Wed | - Accessed EC2 through Session Manager and tested aws s3 ls/cp through the endpoint | 08/06/2026 | 12/06/2026 | <https://cloudjourney.awsstudygroup.com/> |
-| Thu | - Captured route table, endpoint status, and CLI results for the workshop | 08/06/2026 | 12/06/2026 | <https://cloudjourney.awsstudygroup.com/> |
+| Mon | - Created an AWS Budget and reviewed cost alert thresholds | 08/06/2026 | 12/06/2026 | [Section 5.3.1](../../5-workshop/5.3-budget-s3-iam/5.3.1-budget/) |
+| Tue | - Created `techblog-uploads-ttv-2026` with Block Public Access and SSE-S3 | 08/06/2026 | 12/06/2026 | [Section 5.3.2](../../5-workshop/5.3-budget-s3-iam/5.3.2-s3/) |
+| Wed | - Created `techblog-ec2-role` and prepared S3, CloudWatch, and SES permissions | 08/06/2026 | 12/06/2026 | [Section 5.3.3](../../5-workshop/5.3-budget-s3-iam/5.3.3-iam-role/) |
+| Thu | - Verified the Amazon SES email identity and Sandbox status | 08/06/2026 | 12/06/2026 | [Section 5.3.4](../../5-workshop/5.3-budget-s3-iam/5.3.4-ses/) |
 
 ### Week 8 Achievements:
 
-* Verified that EC2 inside the VPC can access S3 through the Gateway endpoint instead of the public Internet.
+* Budgets, S3, the IAM Role, and SES were prepared for the TechBlog architecture.
 * Updated evidence, technical notes, and related content in the internship report.

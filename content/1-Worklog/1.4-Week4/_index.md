@@ -6,20 +6,20 @@ chapter: false
 pre: " <b> 1.4. </b> "
 ---
 
-### Week 4 Objectives: Project research and proposal writing
+### Week 4 Objectives: TechBlog assessment and AWS deployment proposal
 
-* Define the problem, scope, initial architecture, and implementation plan.
+* Assess the existing TechBlog application and define a suitable AWS deployment scope and architecture.
 * Timeline: from 11/05/2026 to 15/05/2026.
 
 ### Tasks to be carried out this week:
 | Day | Task | Start Date | Completion Date | Reference Material |
 | --- | ---- | ---------- | --------------- | ------------------ |
-| Mon | - Reviewed FCJ project rules and selected the private/hybrid S3 access use-case | 11/05/2026 | 15/05/2026 | <https://cloudjourney.awsstudygroup.com/> |
-| Tue | - Analyzed required AWS services: S3, VPC Endpoint, EC2, SSM, Transit Gateway, Route 53 Resolver, IAM | 11/05/2026 | 15/05/2026 | <https://cloudjourney.awsstudygroup.com/> |
-| Wed | - Drafted the initial architecture and described cloud/on-premises traffic flow to S3 | 11/05/2026 | 15/05/2026 | <https://cloudjourney.awsstudygroup.com/> |
-| Thu | - Wrote and reviewed the bilingual Proposal section | 11/05/2026 | 15/05/2026 | <https://cloudjourney.awsstudygroup.com/> |
+| Mon | - Reviewed the Spring Boot, Thymeleaf, MySQL architecture and Reader/Writer/Admin flows | 11/05/2026 | 15/05/2026 | [Section 2 - Proposal](../../2-proposal/) |
+| Tue | - Assessed the IntelliJ/Laragon limitations and defined the `ap-southeast-1` deployment scope | 11/05/2026 | 15/05/2026 | [Section 2 - Proposal](../../2-proposal/) |
+| Wed | - Designed the EC2, private RDS MySQL, private S3, SES, IAM Role, CloudWatch, and Budgets architecture | 11/05/2026 | 15/05/2026 | [Section 2 - Proposal](../../2-proposal/) |
+| Thu | - Completed the Proposal objectives, technical plan, risks, cost controls, and security boundaries | 11/05/2026 | 15/05/2026 | [Section 2 - Proposal](../../2-proposal/) |
 
 ### Week 4 Achievements:
 
-* Completed project direction, initial architecture, and Proposal content.
+* Completed a Proposal aligned with the implemented TechBlog architecture and demo limitations.
 * Updated evidence, technical notes, and related content in the internship report.

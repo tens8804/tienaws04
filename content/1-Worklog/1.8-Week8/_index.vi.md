@@ -6,20 +6,20 @@ chapter: false
 pre: " <b> 1.8. </b> "
 ---
 
-### Mục tiêu tuần 8: Triển khai Gateway VPC Endpoint cho S3
+### Mục tiêu tuần 8: Cấu hình Budgets, S3, IAM Role và SES
 
-* Thiết lập truy cập S3 private từ workload trong VPC Cloud.
+* Thiết lập kiểm soát chi phí, object storage, quyền ứng dụng và email identity.
 * Thời gian thực hiện: từ 08/06/2026 đến 12/06/2026.
 
 ### Các công việc cần triển khai trong tuần này:
 | Thứ | Công việc | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu |
 | --- | --------- | ------------ | --------------- | -------------- |
-| 2 | - Tạo S3 bucket kiểm thử và đảm bảo bucket không public | 08/06/2026 | 12/06/2026 | <https://cloudjourney.awsstudygroup.com/> |
-| 3 | - Tạo Gateway VPC Endpoint cho S3 và liên kết với route table phù hợp | 08/06/2026 | 12/06/2026 | <https://cloudjourney.awsstudygroup.com/> |
-| 4 | - Truy cập EC2 bằng Session Manager và kiểm thử aws s3 ls/cp qua endpoint | 08/06/2026 | 12/06/2026 | <https://cloudjourney.awsstudygroup.com/> |
-| 5 | - Chụp ảnh route table, endpoint status và kết quả CLI để đưa vào workshop | 08/06/2026 | 12/06/2026 | <https://cloudjourney.awsstudygroup.com/> |
+| 2 | - Tạo AWS Budget và kiểm tra ngưỡng cảnh báo chi phí | 08/06/2026 | 12/06/2026 | [Mục 5.3.1](../../5-workshop/5.3-budget-s3-iam/5.3.1-budget/) |
+| 3 | - Tạo bucket `techblog-uploads-ttv-2026`, bật Block Public Access và SSE-S3 | 08/06/2026 | 12/06/2026 | [Mục 5.3.2](../../5-workshop/5.3-budget-s3-iam/5.3.2-s3/) |
+| 4 | - Tạo `techblog-ec2-role` và chuẩn bị quyền S3, CloudWatch, SES | 08/06/2026 | 12/06/2026 | [Mục 5.3.3](../../5-workshop/5.3-budget-s3-iam/5.3.3-iam-role/) |
+| 5 | - Xác minh email identity Amazon SES và trạng thái Sandbox | 08/06/2026 | 12/06/2026 | [Mục 5.3.4](../../5-workshop/5.3-budget-s3-iam/5.3.4-ses/) |
 
 ### Kết quả đạt được tuần 8:
 
-* Xác minh EC2 trong VPC có thể truy cập S3 thông qua Gateway endpoint thay vì public Internet.
+* Budgets, S3, IAM Role và SES được chuẩn bị đúng với kiến trúc TechBlog.
 * Cập nhật minh chứng, ghi chú kỹ thuật và nội dung liên quan vào báo cáo thực tập.

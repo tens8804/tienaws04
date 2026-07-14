@@ -21,5 +21,5 @@ pre: " <b> 1.3. </b> "
 
 ### Week 3 Achievements:
 
-* Understood basic EC2, S3, and VPC connectivity, preparing for the VPC Endpoint workshop.
+* Understood EC2, S3, and networking fundamentals needed to design the TechBlog deployment environment.
 * Updated evidence, technical notes, and related content in the internship report.

@@ -14,20 +14,20 @@ Nhật ký công việc được sắp xếp theo 12 tuần thực tập, từ n
 
 **Tuần 3 (04/05/2026 - 08/05/2026):** [Amazon EC2, S3 và networking nền tảng](1.3-week3/)
 
-**Tuần 4 (11/05/2026 - 15/05/2026):** [Nghiên cứu đề tài và viết Proposal](1.4-week4/)
+**Tuần 4 (11/05/2026 - 15/05/2026):** [Phân tích TechBlog và xây dựng Proposal triển khai AWS](1.4-week4/)
 
 **Tuần 5 (18/05/2026 - 22/05/2026):** [Dịch blog AWS và tổng hợp kiến thức](1.5-week5/)
 
 **Tuần 6 (25/05/2026 - 29/05/2026):** [Tham gia sự kiện và hoàn thiện learning log](1.6-week6/)
 
-**Tuần 7 (01/06/2026 - 05/06/2026):** [Chuẩn bị môi trường Workshop và CloudFormation](1.7-week7/)
+**Tuần 7 (01/06/2026 - 05/06/2026):** [Kiểm tra TechBlog local và chuẩn bị môi trường AWS](1.7-week7/)
 
-**Tuần 8 (08/06/2026 - 12/06/2026):** [Triển khai Gateway VPC Endpoint cho S3](1.8-week8/)
+**Tuần 8 (08/06/2026 - 12/06/2026):** [Cấu hình Budgets, S3, IAM Role và SES](1.8-week8/)
 
-**Tuần 9 (15/06/2026 - 19/06/2026):** [Triển khai Interface Endpoint và mô phỏng hybrid access](1.9-week9/)
+**Tuần 9 (15/06/2026 - 19/06/2026):** [Triển khai RDS MySQL và EC2](1.9-week9/)
 
-**Tuần 10 (22/06/2026 - 26/06/2026):** [Endpoint policy, bảo mật và monitoring](1.10-week10/)
+**Tuần 10 (22/06/2026 - 26/06/2026):** [Triển khai TechBlog và cấu hình tích hợp AWS](1.10-week10/)
 
-**Tuần 11 (29/06/2026 - 03/07/2026):** [Cleanup, tối ưu chi phí và hoàn thiện Workshop](1.11-week11/)
+**Tuần 11 (29/06/2026 - 03/07/2026):** [Kiểm thử, monitoring, rà soát bảo mật và lập kế hoạch cleanup](1.11-week11/)
 
 **Tuần 12 (06/07/2026 - 10/07/2026):** [Rà soát cuối kỳ và hoàn thiện báo cáo](1.12-week12/)
